@@ -20,6 +20,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import misc.SimulationPresets;
+import simulator.Presenter;
+
 public class AppWindowAdmin {
 
 	private JFrame frame;
@@ -30,10 +33,12 @@ public class AppWindowAdmin {
 	private JLabel labelButton;
 	private JLabel labelSpinner;
 	private JPasswordField passwordField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField lowerWithdrawal;
+	private JTextField upperWithdrawal;
+	private JTextField peoplePerDay;
+	private JTextField peoplePerSecond;
+	private Presenter presenter;
+	private SimulationPresets simPreset;
 
 	/**
 	 * Launch the application.
@@ -53,8 +58,11 @@ public class AppWindowAdmin {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param presenter
 	 */
-	public AppWindowAdmin() {
+	public AppWindowAdmin(Presenter presenter) {
+		this.presenter = presenter;
 		initialize();
 		frame.setVisible(true);
 
@@ -233,6 +241,7 @@ public class AppWindowAdmin {
 		spinner_1.setModel(new SpinnerNumberModel(0, 0, 999, 1));
 		spinner_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+
 			}
 		});
 		spinner_1.setBounds(0, 0, 43, 20);
@@ -278,6 +287,12 @@ public class AppWindowAdmin {
 		JButton button = new JButton("Resetuj");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				spinner_1.setValue(new Integer(0));
+				spinner_2.setValue(new Integer(0));
+				spinner_3.setValue(new Integer(0));
+				spinner_4.setValue(new Integer(0));
+				spinner_5.setValue(new Integer(0));
+
 			}
 		});
 		button.setBounds(16, 144, 89, 23);
@@ -318,35 +333,45 @@ public class AppWindowAdmin {
 		lblLiczbaKlijentwNa.setBounds(16, 68, 116, 14);
 		panel_4.add(lblLiczbaKlijentwNa);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(152, 18, 86, 20);
-		panel_4.add(textField_1);
-		textField_1.setColumns(10);
+		lowerWithdrawal = new JTextField();
+		lowerWithdrawal.setBounds(152, 18, 86, 20);
+		panel_4.add(lowerWithdrawal);
+		lowerWithdrawal.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(152, 43, 86, 20);
-		panel_4.add(textField_2);
-		textField_2.setColumns(10);
+		upperWithdrawal = new JTextField();
+		upperWithdrawal.setBounds(152, 43, 86, 20);
+		panel_4.add(upperWithdrawal);
+		upperWithdrawal.setColumns(10);
 
-		textField_3 = new JTextField();
-		textField_3.setBounds(152, 68, 86, 20);
-		panel_4.add(textField_3);
-		textField_3.setColumns(10);
+		peoplePerDay = new JTextField();
+		peoplePerDay.setBounds(152, 68, 86, 20);
+		panel_4.add(peoplePerDay);
+		peoplePerDay.setColumns(10);
 
 		JLabel lblIloKlientowNa = new JLabel("Ilo\u015B\u0107 klientow na sekund\u0119");
 		lblIloKlientowNa.setBounds(16, 93, 126, 14);
 		panel_4.add(lblIloKlientowNa);
 
-		textField_4 = new JTextField();
-		textField_4.setBounds(152, 93, 86, 20);
-		panel_4.add(textField_4);
-		textField_4.setColumns(10);
+		peoplePerSecond = new JTextField();
+		peoplePerSecond.setBounds(152, 93, 86, 20);
+		panel_4.add(peoplePerSecond);
+		peoplePerSecond.setColumns(10);
 
 		JButton btnWstrzymaj = new JButton("Wstrzymaj");
 		btnWstrzymaj.setBounds(167, 183, 89, 51);
 		runtime.add(btnWstrzymaj);
 
 		JButton btnNewButton_1 = new JButton("Wzn\u00F3w");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				presenter.startSimulation();
+				simPreset.setClientsPerDay(peoplePerDay.getText());
+				simPreset.setClientsPerSecond(peoplePerSecond.getText());
+				simPreset.setWithdrawLowerLimit(lowerWithdrawal.getText());
+				simPreset.setWithdrawUpperLimit(upperWithdrawal.getText());
+
+			}
+		});
 		btnNewButton_1.setBounds(272, 183, 89, 51);
 		runtime.add(btnNewButton_1);
 
