@@ -8,11 +8,8 @@ import java.util.List;
 
 import client.AbstractClient;
 import client.IClient;
-import client.PIN;
 
 public class ATM implements IATM {
-
-    private int tryLimit = 3;
 
     private IClient client;
 
@@ -47,23 +44,9 @@ public class ATM implements IATM {
 
         this.client = client;
 
-        if (isCorrectPIN()) {
-            int withdrawAmmount = client.getWithdrawRequest();
-            withdrawMoney(withdrawAmmount);
-        } else {
-            System.out.println("Klient poda³ niepoprawny PIN!");
-        }
-    }
+        int withdrawAmmount = client.getWithdrawRequest();
+        withdrawMoney(withdrawAmmount);
 
-    private boolean isCorrectPIN() {
-        for (int tryNumber = 1; tryNumber <= tryLimit; tryNumber++) {
-            PIN pin = client.insertPIN();
-            if (pin == PIN.CORRECT) {
-                return true;
-            }
-
-        }
-        return false;
     }
 
     public void withdrawMoney(int request) {

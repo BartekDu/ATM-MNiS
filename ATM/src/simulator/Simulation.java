@@ -2,6 +2,7 @@ package simulator;
 
 import java.util.TimerTask;
 
+import misc.Preferences;
 import ATM.ATM;
 import ATM.IATM;
 import client.AbstractClient;
@@ -29,6 +30,14 @@ public class Simulation extends TimerTask {
         System.out.println(i++);
         System.out.println("Run");
         atm.nextClient(client);
+
+    }
+
+    public void setPreferences(Preferences preferences) {
+        client.setLowerWithdrawLimit(preferences.getLOWER_WITHDRAW_LIMIT());
+        client.setUpperWithdrawLimit(preferences.getUPPER_WITHDRAW_LIMIT());
+        atm.refillNotes(preferences.getPln200Count(), preferences.getPln100Count(), preferences.getPln50Count(), preferences.getPln20Count(),
+                preferences.getPln10Count());
 
     }
 
