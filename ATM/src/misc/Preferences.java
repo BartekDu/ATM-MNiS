@@ -2,7 +2,13 @@ package misc;
 
 public class Preferences {
 
-    int pln200Count, pln100Count, pln50Count, pln20Count, pln10Count;
+    private int pln200Count, pln100Count, pln50Count, pln20Count, pln10Count;
+
+    private double CORRECT_PIN_CHANCE = 0.8;
+
+    private int UPPER_WITHDRAW_LIMIT = 500;
+
+    private int LOWER_WITHDRAW_LIMIT = 100;
 
     public Preferences() {
 
