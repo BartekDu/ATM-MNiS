@@ -369,6 +369,12 @@ public class AppWindowAdmin {
 				simPreset.setClientsPerSecond(peoplePerSecond.getText());
 				simPreset.setWithdrawLowerLimit(lowerWithdrawal.getText());
 				simPreset.setWithdrawUpperLimit(upperWithdrawal.getText());
+				simPreset.setPLN200((String) spinner_1.getValue());
+				simPreset.setPLN100((String) spinner_2.getValue());
+				simPreset.setPLN50((String) spinner_3.getValue());
+				simPreset.setPLN20((String) spinner_4.getValue());
+				simPreset.setPLN10((String) spinner_5.getValue());
+				simPreset.setDaysToRefill((String) spinner_6.getValue());
 
 			}
 		});
