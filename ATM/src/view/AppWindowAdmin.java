@@ -334,16 +334,20 @@ public class AppWindowAdmin {
 		panel_4.add(lblLiczbaKlijentwNa);
 
 		lowerWithdrawal = new JTextField();
+		lowerWithdrawal.setToolTipText("Najni\u017Csza dozwolona kwota wyp\u0142aty");
+		lowerWithdrawal.setText("10");
 		lowerWithdrawal.setBounds(152, 18, 86, 20);
 		panel_4.add(lowerWithdrawal);
 		lowerWithdrawal.setColumns(10);
 
 		upperWithdrawal = new JTextField();
+		upperWithdrawal.setText("3000");
 		upperWithdrawal.setBounds(152, 43, 86, 20);
 		panel_4.add(upperWithdrawal);
 		upperWithdrawal.setColumns(10);
 
 		peoplePerDay = new JTextField();
+		peoplePerDay.setText("100");
 		peoplePerDay.setBounds(152, 68, 86, 20);
 		panel_4.add(peoplePerDay);
 		peoplePerDay.setColumns(10);
@@ -353,6 +357,7 @@ public class AppWindowAdmin {
 		panel_4.add(lblIloKlientowNa);
 
 		peoplePerSecond = new JTextField();
+		peoplePerSecond.setText("100");
 		peoplePerSecond.setBounds(152, 93, 86, 20);
 		panel_4.add(peoplePerSecond);
 		peoplePerSecond.setColumns(10);
