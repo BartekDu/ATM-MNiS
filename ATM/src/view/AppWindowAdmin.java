@@ -15,6 +15,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -29,6 +30,10 @@ public class AppWindowAdmin {
 	private JLabel labelButton;
 	private JLabel labelSpinner;
 	private JPasswordField passwordField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -91,6 +96,15 @@ public class AppWindowAdmin {
 		textField.setColumns(10);
 
 		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			private int i;
+
+			public void actionPerformed(ActionEvent arg0) {
+				labelButton.setText("" + i);
+				i++;
+
+			}
+		});
 		btnNewButton.setBounds(216, 81, 89, 23);
 		misc.add(btnNewButton);
 
@@ -164,67 +178,6 @@ public class AppWindowAdmin {
 		tabbedPane.setEnabledAt(1, false);
 		admin.setLayout(null);
 
-		JPanel Status = new JPanel();
-		Status.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w");
-		Status.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		Status.setBounds(6, 11, 113, 179);
-		admin.add(Status);
-		Status.setLayout(null);
-
-		JPanel SpinnerLabels = new JPanel();
-		SpinnerLabels.setBounds(10, 19, 46, 114);
-		Status.add(SpinnerLabels);
-		SpinnerLabels.setLayout(null);
-
-		JLabel lblPln200 = new JLabel("200 PLN");
-		lblPln200.setBounds(0, 0, 46, 14);
-		SpinnerLabels.add(lblPln200);
-
-		JLabel lblPln100 = new JLabel("100 PLN");
-		lblPln100.setBounds(0, 25, 46, 14);
-		SpinnerLabels.add(lblPln100);
-
-		JLabel lblPln50 = new JLabel("50 PLN");
-		lblPln50.setBounds(0, 50, 46, 14);
-		SpinnerLabels.add(lblPln50);
-
-		JLabel lblPln20 = new JLabel("20 PLN");
-		lblPln20.setBounds(0, 75, 46, 14);
-		SpinnerLabels.add(lblPln20);
-
-		JLabel lblPln10 = new JLabel("10 PLN");
-		lblPln10.setBounds(0, 100, 46, 14);
-		SpinnerLabels.add(lblPln10);
-
-		JPanel Spiners = new JPanel();
-		Spiners.setBounds(76, 19, 29, 120);
-		Status.add(Spiners);
-		Spiners.setLayout(null);
-
-		JSpinner spinner_200 = new JSpinner();
-		spinner_200.setBounds(0, 0, 29, 20);
-		Spiners.add(spinner_200);
-
-		JSpinner spinner_100 = new JSpinner();
-		spinner_100.setBounds(0, 25, 29, 20);
-		Spiners.add(spinner_100);
-
-		JSpinner spinner_50 = new JSpinner();
-		spinner_50.setBounds(0, 50, 29, 20);
-		Spiners.add(spinner_50);
-
-		JSpinner spinner_20 = new JSpinner();
-		spinner_20.setBounds(0, 75, 29, 20);
-		Spiners.add(spinner_20);
-
-		JSpinner spinner_10 = new JSpinner();
-		spinner_10.setBounds(0, 100, 29, 20);
-		Spiners.add(spinner_10);
-
-		JButton btnReset = new JButton("Resetuj");
-		btnReset.setBounds(16, 144, 89, 23);
-		Status.add(btnReset);
-
 		JButton btnSave = new JButton("Zapisz");
 		btnSave.setToolTipText("Zapiszuje wprowadzone zmiany");
 		btnSave.setBounds(320, 232, 89, 23);
@@ -234,9 +187,168 @@ public class AppWindowAdmin {
 		btnDiscardAmends.setToolTipText("Odrzuca zmiany");
 		btnDiscardAmends.setBounds(203, 232, 107, 23);
 		admin.add(btnDiscardAmends);
-
+		// TODO dlugos spinner dostosowana do int 3 digit
 		JPanel runtime = new JPanel();
 		tabbedPane.addTab("New tab", null, runtime, null);
+		runtime.setLayout(null);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w");
+		panel_1.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(10, 11, 141, 244);
+		runtime.add(panel_1);
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBounds(10, 19, 46, 114);
+		panel_1.add(panel_2);
+
+		JLabel label = new JLabel("200 PLN");
+		label.setBounds(0, 0, 46, 14);
+		panel_2.add(label);
+
+		JLabel label_1 = new JLabel("100 PLN");
+		label_1.setBounds(0, 25, 46, 14);
+		panel_2.add(label_1);
+
+		JLabel label_2 = new JLabel("50 PLN");
+		label_2.setBounds(0, 50, 46, 14);
+		panel_2.add(label_2);
+
+		JLabel label_3 = new JLabel("20 PLN");
+		label_3.setBounds(0, 75, 46, 14);
+		panel_2.add(label_3);
+
+		JLabel label_4 = new JLabel("10 PLN");
+		label_4.setBounds(0, 100, 46, 14);
+		panel_2.add(label_4);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBounds(76, 19, 46, 120);
+		panel_1.add(panel_3);
+
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner_1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+			}
+		});
+		spinner_1.setBounds(0, 0, 43, 20);
+
+		panel_3.add(spinner_1);
+
+		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner_2.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		spinner_2.setBounds(0, 25, 43, 20);
+		panel_3.add(spinner_2);
+
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner_3.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		spinner_3.setBounds(0, 50, 43, 20);
+		panel_3.add(spinner_3);
+
+		JSpinner spinner_4 = new JSpinner();
+		spinner_4.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner_4.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		spinner_4.setBounds(0, 75, 43, 20);
+		panel_3.add(spinner_4);
+
+		JSpinner spinner_5 = new JSpinner();
+		spinner_5.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner_5.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+			}
+		});
+		spinner_5.setBounds(0, 100, 43, 20);
+		panel_3.add(spinner_5);
+
+		JButton button = new JButton("Resetuj");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button.setBounds(16, 144, 89, 23);
+		panel_1.add(button);
+
+		JLabel lblUzupenijPo = new JLabel("Uzupe\u0142nij po");
+		lblUzupenijPo.setBounds(7, 178, 59, 14);
+		panel_1.add(lblUzupenijPo);
+
+		JSpinner spinner_6 = new JSpinner();
+		spinner_6.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+			}
+		});
+		spinner_6.setBounds(67, 175, 38, 20);
+		panel_1.add(spinner_6);
+
+		JLabel lblDniach = new JLabel("dniach");
+		lblDniach.setBounds(106, 178, 46, 14);
+		panel_1.add(lblDniach);
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(null, "Sta³e œrodowiskowe", TitledBorder.LEADING, TitledBorder.TOP, null,
+				null));
+		panel_4.setBounds(161, 11, 248, 161);
+		runtime.add(panel_4);
+		panel_4.setLayout(null);
+
+		JLabel lblGrnaGranicaWypaty = new JLabel("G\u00F3rna granica wyp\u0142aty");
+		lblGrnaGranicaWypaty.setBounds(16, 43, 109, 14);
+		panel_4.add(lblGrnaGranicaWypaty);
+
+		JLabel label_5 = new JLabel("Dolna granica wyp\u0142aty");
+		label_5.setBounds(16, 18, 107, 14);
+		panel_4.add(label_5);
+
+		JLabel lblLiczbaKlijentwNa = new JLabel("Liczba klijent\u00F3w na dob\u0119");
+		lblLiczbaKlijentwNa.setBounds(16, 68, 116, 14);
+		panel_4.add(lblLiczbaKlijentwNa);
+
+		textField_1 = new JTextField();
+		textField_1.setBounds(152, 18, 86, 20);
+		panel_4.add(textField_1);
+		textField_1.setColumns(10);
+
+		textField_2 = new JTextField();
+		textField_2.setBounds(152, 43, 86, 20);
+		panel_4.add(textField_2);
+		textField_2.setColumns(10);
+
+		textField_3 = new JTextField();
+		textField_3.setBounds(152, 68, 86, 20);
+		panel_4.add(textField_3);
+		textField_3.setColumns(10);
+
+		JLabel lblIloKlientowNa = new JLabel("Ilo\u015B\u0107 klientow na sekund\u0119");
+		lblIloKlientowNa.setBounds(16, 93, 126, 14);
+		panel_4.add(lblIloKlientowNa);
+
+		textField_4 = new JTextField();
+		textField_4.setBounds(152, 93, 86, 20);
+		panel_4.add(textField_4);
+		textField_4.setColumns(10);
+
+		JButton btnWstrzymaj = new JButton("Wstrzymaj");
+		btnWstrzymaj.setBounds(167, 183, 89, 51);
+		runtime.add(btnWstrzymaj);
+
+		JButton btnNewButton_1 = new JButton("Wzn\u00F3w");
+		btnNewButton_1.setBounds(272, 183, 89, 51);
+		runtime.add(btnNewButton_1);
 
 	}
 
