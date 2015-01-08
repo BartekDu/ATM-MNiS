@@ -1,10 +1,11 @@
 package simulator;
 
-import client.AbstractClient;
-import client.Client;
 import ATM.ATM;
 import ATM.IATM;
+import client.AbstractClient;
+import client.Client;
 
+// chujowy komentarz
 public class SimulationController {
 
     public static final int ITERATION_COUNT = 100;
