@@ -427,4 +427,12 @@ public class AppWindowAdmin {
 	public void setLabelSpinnerText(String text_4) {
 		labelSpinner.setText(text_4);
 	}
+
+	public SimulationPresets getSimulationPreset() {
+		return simPreset;
+	}
+
+	public void setSimulationPreset(SimulationPresets simPreset) {
+		this.simPreset = simPreset;
+	}
 }
