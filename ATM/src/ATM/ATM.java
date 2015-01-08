@@ -24,6 +24,7 @@ public class ATM implements IATM {
 
         prepareNotesCountMap();
         prepareSortedNotesValueList();
+
     }
 
     private void prepareSortedNotesValueList() {
@@ -34,11 +35,11 @@ public class ATM implements IATM {
 
     private void prepareNotesCountMap() {
         notesCount = new HashMap<>();
-        notesCount.put(NotesValues.PLN200, NotesCount.PLN_200);
-        notesCount.put(NotesValues.PLN100, NotesCount.PLN_100);
-        notesCount.put(NotesValues.PLN50, NotesCount.PLN_50);
-        notesCount.put(NotesValues.PLN20, NotesCount.PLN_20);
-        notesCount.put(NotesValues.PLN10, NotesCount.PLN_10);
+        notesCount.put(NotesValues.PLN200, 0);
+        notesCount.put(NotesValues.PLN100, 0);
+        notesCount.put(NotesValues.PLN50, 0);
+        notesCount.put(NotesValues.PLN20, 0);
+        notesCount.put(NotesValues.PLN10, 0);
     }
 
     @Override

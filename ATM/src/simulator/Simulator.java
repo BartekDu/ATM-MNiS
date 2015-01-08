@@ -2,8 +2,9 @@ package simulator;
 
 public class Simulator {
 
-    public Simulator() {
-        // TODO Auto-generated constructor stub
+    public static void main(String[] args) {
+        SimulationController simCont = new SimulationController();
+        Presenter presenter = new Presenter(simCont);
     }
 
 }
