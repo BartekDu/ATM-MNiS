@@ -1,30 +1,25 @@
 package simulator;
 
-import ATM.ATM;
-import ATM.IATM;
-import client.AbstractClient;
-import client.Client;
+import java.util.Timer;
 
-// chujowy komentarz
 public class SimulationController {
 
-    public static final int ITERATION_COUNT = 100;
+    public static int ITERATION_TIME_MS = 1000;
+
+    private Simulation simulationModule;
+
+    private Timer simulationTimer;
 
     public SimulationController() {
-        // TODO Auto-generated constructor stub
+        simulationModule = new Simulation();
     }
 
-    public static void main(String[] args) {
-        IATM atm = new ATM();
-        AbstractClient client = new Client();
-        for (int iteration = 0; iteration < ITERATION_COUNT; iteration++) {
-            System.out.println(iteration);
-            atm.nextClient(client);
-            System.out.println("***********");
-            if (iteration == 20) {
-                atm.refillNotes(20, 20, 20, 20, 20);
-            }
-        }
+    public void startSimulation() {
+        simulationTimer = new Timer("Simaltion Timer Thread");
+        simulationTimer.scheduleAtFixedRate(simulationModule, 1000, 10);
     }
 
+    public void prepareSimulation() {
+
+    }
 }
