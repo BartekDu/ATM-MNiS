@@ -8,8 +8,11 @@ public class Preferences {
 
     private int LOWER_WITHDRAW_LIMIT;
 
-    public Preferences() {
-
+    public Preferences(SimulationPresets simulationPresets) {
+        setRefillNotesCount(simulationPresets.getPLN200(), simulationPresets.getPLN100(), simulationPresets.getPLN50(), simulationPresets.getPLN20(),
+                simulationPresets.getPLN10());
+        setUPPER_WITHDRAW_LIMIT(simulationPresets.getWithdrawUpperLimitInt());
+        setLOWER_WITHDRAW_LIMIT(simulationPresets.getWithdrawLowerLimitInt());
     }
 
     public void setRefillNotesCount(int pln200, int pln100, int pln50, int pln20, int pln10) {

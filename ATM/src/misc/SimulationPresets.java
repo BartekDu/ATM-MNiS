@@ -2,94 +2,123 @@ package misc;
 
 public class SimulationPresets {
 
-	private String withdrawLowerLimit;
-	private String withdrawUpperLimit;
-	private String clientsPerDay;
-	private String clientsPerSecond;
-	private String PLN200;
-	private String PLN100;
-	private String PLN50;
-	private String PLN20;
-	private String PLN10;
-	private String daysToRefill;
+    private String withdrawLowerLimit;
 
-	public String getPLN200() {
-		return PLN200;
-	}
+    private String withdrawUpperLimit;
 
-	public String getPLN100() {
-		return PLN100;
-	}
+    private String clientsPerDay;
 
-	public String getPLN50() {
-		return PLN50;
-	}
+    private String clientsPerSecond;
 
-	public String getPLN20() {
-		return PLN20;
-	}
+    private Integer PLN200;
 
-	public String getPLN10() {
-		return PLN10;
-	}
+    private Integer PLN100;
 
-	public String getDaysToRefill() {
-		return daysToRefill;
-	}
+    private Integer PLN50;
 
-	public void setPLN200(String pLN200) {
-		PLN200 = pLN200;
-	}
+    private Integer PLN20;
 
-	public void setPLN100(String pLN100) {
-		PLN100 = pLN100;
-	}
+    private Integer PLN10;
 
-	public void setPLN50(String pLN50) {
-		PLN50 = pLN50;
-	}
+    private String daysToRefill;
 
-	public void setPLN20(String pLN20) {
-		PLN20 = pLN20;
-	}
+    public String getDaysToRefill() {
+        return daysToRefill;
+    }
 
-	public void setPLN10(String pLN10) {
-		PLN10 = pLN10;
-	}
+    public int getDaysToRefillInt() {
+        return Integer.parseInt(daysToRefill);
+    }
 
-	public void setDaysToRefill(String daysToRefill) {
-		this.daysToRefill = daysToRefill;
-	}
+    public void setDaysToRefill(String daysToRefill) {
+        this.daysToRefill = daysToRefill;
+    }
 
-	public String getWithdrawLowerLimit() {
-		return withdrawLowerLimit;
-	}
+    public String getWithdrawLowerLimit() {
+        return withdrawLowerLimit;
+    }
 
-	public String getWithdrawUpperLimit() {
-		return withdrawUpperLimit;
-	}
+    public String getWithdrawUpperLimit() {
+        return withdrawUpperLimit;
+    }
 
-	public String getClientsPerDay() {
-		return clientsPerDay;
-	}
+    public String getClientsPerDay() {
+        return clientsPerDay;
+    }
 
-	public String getClientsPerSecond() {
-		return clientsPerSecond;
-	}
+    public String getClientsPerSecond() {
+        return clientsPerSecond;
+    }
 
-	public void setWithdrawLowerLimit(String withdrawLowerLimit) {
-		this.withdrawLowerLimit = withdrawLowerLimit;
-	}
+    public int getWithdrawLowerLimitInt() {
+        return Integer.parseInt(withdrawLowerLimit);
+    }
 
-	public void setWithdrawUpperLimit(String withdrawUpperLimit) {
-		this.withdrawUpperLimit = withdrawUpperLimit;
-	}
+    public int getWithdrawUpperLimitInt() {
+        return Integer.parseInt(withdrawUpperLimit);
+    }
 
-	public void setClientsPerDay(String string) {
-		this.clientsPerDay = string;
-	}
+    public int getClientsPerDayInt() {
+        return Integer.parseInt(clientsPerDay);
+    }
 
-	public void setClientsPerSecond(String string) {
-		this.clientsPerSecond = string;
-	}
+    public int getClientsPerSecondInt() {
+        return Integer.parseInt(clientsPerSecond);
+    }
+
+    public void setWithdrawLowerLimit(String withdrawLowerLimit) {
+        this.withdrawLowerLimit = withdrawLowerLimit;
+    }
+
+    public void setWithdrawUpperLimit(String withdrawUpperLimit) {
+        this.withdrawUpperLimit = withdrawUpperLimit;
+    }
+
+    public void setClientsPerDay(String string) {
+        this.clientsPerDay = string;
+    }
+
+    public void setClientsPerSecond(String string) {
+        this.clientsPerSecond = string;
+    }
+
+    public Integer getPLN200() {
+        return PLN200;
+    }
+
+    public void setPLN200(Integer pLN200) {
+        PLN200 = pLN200;
+    }
+
+    public Integer getPLN100() {
+        return PLN100;
+    }
+
+    public void setPLN100(Integer pLN100) {
+        PLN100 = pLN100;
+    }
+
+    public Integer getPLN50() {
+        return PLN50;
+    }
+
+    public void setPLN50(Integer pLN50) {
+        PLN50 = pLN50;
+    }
+
+    public Integer getPLN20() {
+        return PLN20;
+    }
+
+    public void setPLN20(Integer pLN20) {
+        PLN20 = pLN20;
+    }
+
+    public Integer getPLN10() {
+        return PLN10;
+    }
+
+    public void setPLN10(Integer pLN10) {
+        PLN10 = pLN10;
+    }
 }

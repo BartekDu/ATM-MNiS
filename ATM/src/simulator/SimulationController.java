@@ -2,6 +2,8 @@ package simulator;
 
 import java.util.Timer;
 
+import misc.Preferences;
+
 public class SimulationController {
     // sadsad
     public static int ITERATION_TIME_MS = 1000;
@@ -19,7 +21,8 @@ public class SimulationController {
         simulationTimer.scheduleAtFixedRate(simulationModule, 1000, 10);
     }
 
-    public void prepareSimulation() {
-
+    public void prepareSimulation(Preferences preferences) {
+        simulationModule.setPreferences(preferences);
+        simulationModule.fillATM();
     }
 }

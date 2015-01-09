@@ -12,138 +12,140 @@ import client.IClient;
 
 public class ATM implements IATM {
 
-	private IClient client;
+    private IClient client;
 
-	private List<Integer> notesValues;
+    private List<Integer> notesValues;
 
-	private HashMap<Integer, Integer> notesCount; // klucz - wartosc banknotu,
-													// value - ilosc w banku
-	private Writer write;
+    private HashMap<Integer, Integer> notesCount; // klucz - wartosc banknotu,
+                                                  // value - ilosc w banku
 
-	public ATM() {
+    private Writer write;
 
-		prepareNotesCountMap();
-		prepareSortedNotesValueList();
+    public ATM() {
 
-	}
+        prepareNotesCountMap();
+        prepareSortedNotesValueList();
+        write = new Writer();
 
-	private void prepareSortedNotesValueList() {
-		Collection<Integer> posibleNotes = notesCount.keySet();
-		notesValues = asSortedList(posibleNotes);
-		Collections.reverse(notesValues);
-	}
+    }
 
-	private void prepareNotesCountMap() {
-		notesCount = new HashMap<>();
-		notesCount.put(NotesValues.PLN200, 0);
-		notesCount.put(NotesValues.PLN100, 0);
-		notesCount.put(NotesValues.PLN50, 0);
-		notesCount.put(NotesValues.PLN20, 0);
-		notesCount.put(NotesValues.PLN10, 0);
-	}
+    private void prepareSortedNotesValueList() {
+        Collection<Integer> posibleNotes = notesCount.keySet();
+        notesValues = asSortedList(posibleNotes);
+        Collections.reverse(notesValues);
+    }
 
-	@Override
-	public void nextClient(AbstractClient client) {
+    private void prepareNotesCountMap() {
+        notesCount = new HashMap<>();
+        notesCount.put(NotesValues.PLN200, 0);
+        notesCount.put(NotesValues.PLN100, 0);
+        notesCount.put(NotesValues.PLN50, 0);
+        notesCount.put(NotesValues.PLN20, 0);
+        notesCount.put(NotesValues.PLN10, 0);
+    }
 
-		this.client = client;
+    @Override
+    public void nextClient(AbstractClient client) {
 
-		int withdrawAmmount = client.getWithdrawRequest();
-		withdrawMoney(withdrawAmmount);
+        this.client = client;
 
-	}
+        int withdrawAmmount = client.getWithdrawRequest();
+        withdrawMoney(withdrawAmmount);
 
-	public void withdrawMoney(int request) {
-		printMoneyCountStatus();
+    }
 
-		if (calculateATMBalance() >= request) {
-			int restToWithdraw = request;
-			ArrayList<Integer> withdrawedNotes = new ArrayList<Integer>();
-			while (restToWithdraw > 0) {
-				Integer noteValue = findHighestPossibleNote(restToWithdraw);
-				if (noteValue != null) {
-					withdrawedNotes.add(noteValue);
-					restToWithdraw -= noteValue;
-					reduceNoteCount(noteValue);
-				} else {
-					write.Write("Bankomat nie ma banknotow do realizacji zadania");
-					break;
-				}
+    public void withdrawMoney(int request) {
+        printMoneyCountStatus();
 
-			}
-			write.Write("Wyplacone banknoty: " + withdrawedNotes);
-		} else {
-			write.Write("Bankomat nie ma banknotow do realizacji zadania");
-		}
-	}
+        if (calculateATMBalance() >= request) {
+            int restToWithdraw = request;
+            ArrayList<Integer> withdrawedNotes = new ArrayList<Integer>();
+            while (restToWithdraw > 0) {
+                Integer noteValue = findHighestPossibleNote(restToWithdraw);
+                if (noteValue != null) {
+                    withdrawedNotes.add(noteValue);
+                    restToWithdraw -= noteValue;
+                    reduceNoteCount(noteValue);
+                } else {
+                    write.write("Bankomat nie ma banknotow do realizacji zadania");
+                    break;
+                }
 
-	private void reduceNoteCount(Integer noteValue) {
-		Integer count = notesCount.get(noteValue);
-		count--;
-		notesCount.put(noteValue, count);
-	}
+            }
+            write.write("Wyplacone banknoty: " + withdrawedNotes);
+        } else {
+            write.write("Bankomat nie ma banknotow do realizacji zadania");
+        }
+    }
 
-	public boolean isEnought(Integer note) {
-		Integer count = notesCount.get(note);
-		if (count > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    private void reduceNoteCount(Integer noteValue) {
+        Integer count = notesCount.get(noteValue);
+        count--;
+        notesCount.put(noteValue, count);
+    }
 
-	public Integer findHighestPossibleNote(int request) {
+    public boolean isEnought(Integer note) {
+        Integer count = notesCount.get(note);
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		for (Integer noteValue : notesValues) {
-			if (noteValue <= request && isEnought(noteValue)) {
+    public Integer findHighestPossibleNote(int request) {
 
-				return noteValue;
-			}
+        for (Integer noteValue : notesValues) {
+            if (noteValue <= request && isEnought(noteValue)) {
 
-		}
+                return noteValue;
+            }
 
-		return null; // nie powinien cuz request zawsze >=10
-	}
+        }
 
-	public int calculateATMBalance()
+        return null; // nie powinien cuz request zawsze >=10
+    }
 
-	{
-		int totalSum = 0;
+    public int calculateATMBalance()
 
-		for (Integer noteValue : notesValues) {
-			totalSum += noteValue * notesCount.get(noteValue);
+    {
+        int totalSum = 0;
 
-		}
-		return totalSum;
-	}
+        for (Integer noteValue : notesValues) {
+            totalSum += noteValue * notesCount.get(noteValue);
 
-	public void printMoneyCountStatus() {
-		write.Write("Stan banknotow w bankomacie: ");
-		for (Integer noteValue : notesValues) {
-			write.Write(noteValue + "PLN" + " = " + notesCount.get(noteValue));
-		}
-	}
+        }
+        return totalSum;
+    }
 
-	// to do sortowania collectionow
-	public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
-		List<T> list = new ArrayList<T>(c);
-		java.util.Collections.sort(list);
-		return list;
-	}
+    public void printMoneyCountStatus() {
+        write.write("Stan banknotow w bankomacie: ");
+        for (Integer noteValue : notesValues) {
+            write.write(noteValue + "PLN" + " = " + notesCount.get(noteValue));
+        }
+    }
 
-	@Override
-	public void refillNotes(int PLN200Count, int PLN100Count, int PLN50Count, int PLN20Count, int PLN10Count) {
-		int[] additionalCountTab = { PLN200Count, PLN100Count, PLN50Count, PLN20Count, PLN10Count };
-		for (int countIndex = 0; countIndex < additionalCountTab.length; countIndex++) {
-			Integer mapKey = notesValues.get(countIndex);
-			increaseNoteCount(mapKey, additionalCountTab[countIndex]);
+    // to do sortowania collectionow
+    public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+        List<T> list = new ArrayList<T>(c);
+        java.util.Collections.sort(list);
+        return list;
+    }
 
-		}
+    @Override
+    public void refillNotes(int PLN200Count, int PLN100Count, int PLN50Count, int PLN20Count, int PLN10Count) {
+        int[] additionalCountTab = { PLN200Count, PLN100Count, PLN50Count, PLN20Count, PLN10Count };
+        for (int countIndex = 0; countIndex < additionalCountTab.length; countIndex++) {
+            Integer mapKey = notesValues.get(countIndex);
+            increaseNoteCount(mapKey, additionalCountTab[countIndex]);
 
-	}
+        }
 
-	private void increaseNoteCount(Integer noteValue, int additionalCount) {
-		Integer count = notesCount.get(noteValue);
-		count += additionalCount;
-		notesCount.put(noteValue, count);
-	}
+    }
+
+    private void increaseNoteCount(Integer noteValue, int additionalCount) {
+        Integer count = notesCount.get(noteValue);
+        count += additionalCount;
+        notesCount.put(noteValue, count);
+    }
 }
