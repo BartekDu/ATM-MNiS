@@ -1,6 +1,6 @@
-package simulator;
+package misc;
 
-import misc.SimulationPresets;
+import simulator.SimulationController;
 
 public class Presenter {
     private SimulationController simulationController;

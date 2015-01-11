@@ -15,8 +15,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import misc.Presenter;
 import misc.SimulationPresets;
-import simulator.Presenter;
 
 public class AppWindowAdmin {
 

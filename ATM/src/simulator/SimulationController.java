@@ -28,7 +28,7 @@ public class SimulationController {
         simulationModule = new Simulation();
         simulationModule.setPreferences(simulationPresets);
         clientsPerSecond = simulationPresets.getClientsPerSecond();
-        simulationModule.fillATM();
+        // simulationModule.fillATM();
     }
 
     public void stopSimulation() {
