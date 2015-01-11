@@ -84,12 +84,16 @@ public class AppWindowAdmin {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
-        frame = new JFrame();
-
+    private JFrame createMainFrame() { // TODO smth like dis
+        JFrame frame = new JFrame();
         frame.setBounds(100, 100, 450, 343);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
+        return frame;
+    }
+
+    private void initialize() {
+        frame = createMainFrame();
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setBounds(0, 0, 424, 294);
