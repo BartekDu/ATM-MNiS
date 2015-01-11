@@ -3,6 +3,7 @@ package simulator;
 import java.util.TimerTask;
 
 import misc.SimulationPresets;
+import misc.Writer;
 import ATM.ATM;
 import ATM.IATM;
 import client.AbstractClient;
@@ -15,24 +16,24 @@ public class Simulation extends TimerTask {
 
     private int pln200RefillCount, pln100RefillCount, pln50RefillCount, pln20RefillCount, pln10RefillCount;
 
-    IATM atm;
+    private IATM atm;
 
-    int i;
+    private AbstractClient client;
 
-    AbstractClient client;
+    private Writer writer;
 
     public Simulation() {
-        i = 0;
+
         atm = new ATM();
         client = new Client();
+        writer = new Writer();
     }
 
     @Override
     public void run() {
-        System.out.println(i++);
-        System.out.println("Run");
-        atm.nextClient(client);
 
+        atm.nextClient(client);
+        writer.write("" + atm.getTransactionInformation());
     }
 
     public void setPreferences(SimulationPresets preferences) {

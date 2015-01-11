@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import misc.IterarionLog;
 import misc.Writer;
 import client.AbstractClient;
 import client.IClient;
@@ -19,7 +20,13 @@ public class ATM implements IATM {
     private HashMap<Integer, Integer> notesCount; // klucz - wartosc banknotu,
                                                   // value - ilosc w banku
 
+    ArrayList<Integer> withdrawedNotes;
+
+    int clientWithdrawRequest;
+
     private Writer write;
+
+    private IterarionLog iterationLog;
 
     public ATM() {
 
@@ -48,33 +55,33 @@ public class ATM implements IATM {
     public void nextClient(AbstractClient client) {
 
         this.client = client;
-
+        iterationLog = new IterarionLog();
         int withdrawAmmount = client.getWithdrawRequest();
         withdrawMoney(withdrawAmmount);
-
+        saveIterationInformation();
     }
 
     public void withdrawMoney(int request) {
-        printMoneyCountStatus();
+        withdrawedNotes = new ArrayList<Integer>();
+        clientWithdrawRequest = request;
 
         if (calculateATMBalance() >= request) {
             int restToWithdraw = request;
-            ArrayList<Integer> withdrawedNotes = new ArrayList<Integer>();
+
             while (restToWithdraw > 0) {
                 Integer noteValue = findHighestPossibleNote(restToWithdraw);
                 if (noteValue != null) {
                     withdrawedNotes.add(noteValue);
+
                     restToWithdraw -= noteValue;
                     reduceNoteCount(noteValue);
                 } else {
-                    write.write("Bankomat nie ma banknotow do realizacji zadania");
+
                     break;
                 }
 
             }
-            write.write("Wyplacone banknoty: " + withdrawedNotes);
-        } else {
-            write.write("Bankomat nie ma banknotow do realizacji zadania");
+
         }
     }
 
@@ -118,10 +125,13 @@ public class ATM implements IATM {
         return totalSum;
     }
 
-    public void printMoneyCountStatus() {
-        write.write("Stan banknotow w bankomacie: ");
+    public void saveIterationInformation() {
+        iterationLog.setClientWithdrawRequest(clientWithdrawRequest);
         for (Integer noteValue : notesValues) {
-            write.write(noteValue + "PLN" + " = " + notesCount.get(noteValue));
+            iterationLog.addNotesCountInformation((noteValue + "PLN" + " = " + notesCount.get(noteValue)));
+        }
+        for (Integer note : withdrawedNotes) {
+            iterationLog.addWithdrawedNotesInformation(note);
         }
     }
 
@@ -147,5 +157,11 @@ public class ATM implements IATM {
         Integer count = notesCount.get(noteValue);
         count += additionalCount;
         notesCount.put(noteValue, count);
+    }
+
+    @Override
+    public IterarionLog getTransactionInformation() {
+        return iterationLog;
+
     }
 }

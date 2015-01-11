@@ -17,7 +17,6 @@ public class Client extends AbstractClient {
 
         }
         request *= 10;
-        System.out.println("Klient chce wyplacic: " + request);
         return request;
     }
 
