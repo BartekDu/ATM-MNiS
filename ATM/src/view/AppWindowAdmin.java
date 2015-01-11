@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,8 @@ public class AppWindowAdmin {
 	private SimulationPresets simPreset;
 	private JTextField clientsPerDayMax;
 	private JFrame frame_1;
+	private JSpinner spinnerRefillAfterNDays = new JSpinner();
+	private JLabel labelTimer;
 
 	/**
 	 * Launch the application.
@@ -81,16 +84,17 @@ public class AppWindowAdmin {
 		frame = createMainFrame();
 		// TODO dlugos spinner dostosowana do int 3 digit
 		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 0, 434, 305);
+		panelMain.setBounds(0, 0, 434, 315);
 		frame_1.getContentPane().add(panelMain);
 		panelMain.setLayout(null);
 
 		JPanel panelAvNotesSettings = new JPanel();
 		panelAvNotesSettings.setLayout(null);
-		panelAvNotesSettings.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w");
+		// TODO tutaj
+		setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
 		panelAvNotesSettings.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
-		panelAvNotesSettings.setBounds(21, 11, 149, 244);
+		panelAvNotesSettings.setBounds(21, 11, 149, 231);
 		panelMain.add(panelAvNotesSettings);
 
 		JPanel panelNotesLabels = new JPanel();
@@ -124,7 +128,7 @@ public class AppWindowAdmin {
 		panelAvNotesSettings.add(panelSpinners);
 
 		JSpinner spinner200 = new JSpinner();
-		spinner200.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner200.setModel(new SpinnerNumberModel(100, 0, 999, 1));
 		spinner200.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
@@ -136,7 +140,7 @@ public class AppWindowAdmin {
 		panelSpinners.add(spinner200);
 
 		JSpinner spinner100 = new JSpinner();
-		spinner100.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner100.setModel(new SpinnerNumberModel(100, 0, 999, 1));
 		spinner100.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -146,7 +150,7 @@ public class AppWindowAdmin {
 		panelSpinners.add(spinner100);
 
 		JSpinner spinner50 = new JSpinner();
-		spinner50.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner50.setModel(new SpinnerNumberModel(100, 0, 999, 1));
 		spinner50.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -156,7 +160,7 @@ public class AppWindowAdmin {
 		panelSpinners.add(spinner50);
 
 		JSpinner spinner20 = new JSpinner();
-		spinner20.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner20.setModel(new SpinnerNumberModel(100, 0, 999, 1));
 		spinner20.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -166,7 +170,7 @@ public class AppWindowAdmin {
 		panelSpinners.add(spinner20);
 
 		JSpinner spinner10 = new JSpinner();
-		spinner10.setModel(new SpinnerNumberModel(0, 0, 999, 1));
+		spinner10.setModel(new SpinnerNumberModel(100, 0, 999, 1));
 		spinner10.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -179,11 +183,11 @@ public class AppWindowAdmin {
 		buttonRestAvNotes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				spinner200.setValue(new Integer(0));
-				spinner100.setValue(new Integer(0));
-				spinner50.setValue(new Integer(0));
-				spinner20.setValue(new Integer(0));
-				spinner10.setValue(new Integer(0));
+				spinner200.setValue(new Integer(100));
+				spinner100.setValue(new Integer(100));
+				spinner50.setValue(new Integer(100));
+				spinner20.setValue(new Integer(100));
+				spinner10.setValue(new Integer(100));
 
 			}
 		});
@@ -194,10 +198,11 @@ public class AppWindowAdmin {
 		lblUzupenijPo.setBounds(7, 178, 59, 14);
 		panelAvNotesSettings.add(lblUzupenijPo);
 
-		JSpinner spinnerRefillAfterNDays = new JSpinner();
+		spinnerRefillAfterNDays.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinnerRefillAfterNDays.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
+				setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
 			}
 		});
 		spinnerRefillAfterNDays.setBounds(67, 175, 38, 20);
@@ -315,6 +320,23 @@ public class AppWindowAdmin {
 		buttonWznow.setBounds(321, 248, 89, 27);
 		panelMain.add(buttonWznow);
 
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Dzieñ symulacji", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(15, 248, 161, 56);
+		panelMain.add(panel);
+		panel.setLayout(null);
+
+		labelTimer = new JLabel("0");
+		labelTimer.setBounds(6, 16, 149, 33);
+		panel.add(labelTimer);
+		labelTimer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+	}
+
+	public void setDynamicIntervalInNominalSpinnersBorder(JPanel panelAvNotesSettings) {
+		panelAvNotesSettings
+				.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w, kt\u00F3re b\u0119d\u0105 dostaczone w "
+						+ spinnerRefillAfterNDays.getValue() + " dniowym interwale z mennicy");
 	}
 
 	public SimulationPresets getSimulationPreset() {
@@ -323,5 +345,13 @@ public class AppWindowAdmin {
 
 	public void setSimulationPreset(SimulationPresets simPreset) {
 		this.simPreset = simPreset;
+	}
+
+	protected String getLabelTimerText() {
+		return labelTimer.getText();
+	}
+
+	protected void setLabelTimerText(String text) {
+		labelTimer.setText(text);
 	}
 }
