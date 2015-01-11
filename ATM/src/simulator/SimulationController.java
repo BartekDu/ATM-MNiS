@@ -2,7 +2,7 @@ package simulator;
 
 import java.util.Timer;
 
-import misc.Preferences;
+import misc.SimulationPresets;
 
 public class SimulationController {
     // sadsad
@@ -10,19 +10,30 @@ public class SimulationController {
 
     private Simulation simulationModule;
 
+    private int clientsPerSecond;
+
     private Timer simulationTimer;
 
     public SimulationController() {
-        simulationModule = new Simulation();
+
     }
 
     public void startSimulation() {
-        simulationTimer = new Timer("Simaltion Timer Thread");
-        simulationTimer.scheduleAtFixedRate(simulationModule, 1000, 10);
+        simulationTimer = new Timer();
+        int delayTimeMS = 1000 / clientsPerSecond;
+        simulationTimer.scheduleAtFixedRate(simulationModule, 1000, delayTimeMS);
     }
 
-    public void prepareSimulation(Preferences preferences) {
-        simulationModule.setPreferences(preferences);
+    public void prepareSimulation(SimulationPresets simulationPresets) {
+        simulationModule = new Simulation();
+        simulationModule.setPreferences(simulationPresets);
+        clientsPerSecond = simulationPresets.getClientsPerSecond();
         simulationModule.fillATM();
+    }
+
+    public void stopSimulation() {
+
+        simulationTimer.cancel();
+
     }
 }

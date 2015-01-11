@@ -2,13 +2,13 @@ package misc;
 
 public class SimulationPresets {
 
-    private String withdrawLowerLimit;
+    private Integer withdrawLowerLimit;
 
-    private String withdrawUpperLimit;
+    private Integer withdrawUpperLimit;
 
-    private String clientsPerDay;
+    private Integer clientsPerDay;
 
-    private String clientsPerSecond;
+    private Integer clientsPerSecond;
 
     private Integer PLN200;
 
@@ -20,69 +20,49 @@ public class SimulationPresets {
 
     private Integer PLN10;
 
-    private String daysToRefill;
+    private Integer daysToRefill;
 
-    public String getDaysToRefill() {
+    public int getDaysToRefill() {
         return daysToRefill;
     }
 
-    public int getDaysToRefillInt() {
-        return Integer.parseInt(daysToRefill);
-    }
-
-    public void setDaysToRefill(String daysToRefill) {
+    public void setDaysToRefill(Integer daysToRefill) {
         this.daysToRefill = daysToRefill;
     }
 
-    public String getWithdrawLowerLimit() {
+    public int getWithdrawLowerLimit() {
         return withdrawLowerLimit;
     }
 
-    public String getWithdrawUpperLimit() {
+    public int getWithdrawUpperLimit() {
         return withdrawUpperLimit;
     }
 
-    public String getClientsPerDay() {
+    public int getClientsPerDay() {
         return clientsPerDay;
     }
 
-    public String getClientsPerSecond() {
+    public int getClientsPerSecond() {
         return clientsPerSecond;
     }
 
-    public int getWithdrawLowerLimitInt() {
-        return Integer.parseInt(withdrawLowerLimit);
-    }
-
-    public int getWithdrawUpperLimitInt() {
-        return Integer.parseInt(withdrawUpperLimit);
-    }
-
-    public int getClientsPerDayInt() {
-        return Integer.parseInt(clientsPerDay);
-    }
-
-    public int getClientsPerSecondInt() {
-        return Integer.parseInt(clientsPerSecond);
-    }
-
     public void setWithdrawLowerLimit(String withdrawLowerLimit) {
-        this.withdrawLowerLimit = withdrawLowerLimit;
+        this.withdrawLowerLimit = Integer.parseInt(withdrawLowerLimit);
     }
 
     public void setWithdrawUpperLimit(String withdrawUpperLimit) {
-        this.withdrawUpperLimit = withdrawUpperLimit;
+        this.withdrawUpperLimit = Integer.parseInt(withdrawUpperLimit);
     }
 
     public void setClientsPerDay(String string) {
-        this.clientsPerDay = string;
+        this.clientsPerDay = Integer.parseInt(string);
     }
 
     public void setClientsPerSecond(String string) {
-        this.clientsPerSecond = string;
+        this.clientsPerSecond = Integer.parseInt(string);
     }
 
-    public Integer getPLN200() {
+    public int getPLN200() {
         return PLN200;
     }
 
@@ -90,7 +70,7 @@ public class SimulationPresets {
         PLN200 = pLN200;
     }
 
-    public Integer getPLN100() {
+    public int getPLN100() {
         return PLN100;
     }
 
@@ -98,7 +78,7 @@ public class SimulationPresets {
         PLN100 = pLN100;
     }
 
-    public Integer getPLN50() {
+    public int getPLN50() {
         return PLN50;
     }
 
@@ -106,7 +86,7 @@ public class SimulationPresets {
         PLN50 = pLN50;
     }
 
-    public Integer getPLN20() {
+    public int getPLN20() {
         return PLN20;
     }
 
@@ -114,7 +94,7 @@ public class SimulationPresets {
         PLN20 = pLN20;
     }
 
-    public Integer getPLN10() {
+    public int getPLN10() {
         return PLN10;
     }
 

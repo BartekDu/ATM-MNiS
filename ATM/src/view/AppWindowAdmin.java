@@ -387,13 +387,21 @@ public class AppWindowAdmin {
 
         JButton btnWstrzymaj = new JButton("Wstrzymaj");
         btnWstrzymaj.setBounds(167, 183, 89, 51);
+        btnWstrzymaj.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.stopSimulation();
+
+            }
+        });
         runtime.add(btnWstrzymaj);
 
         JButton btnNewButton_1 = new JButton("Wzn\u00F3w");
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                presenter.startSimulation();
+
                 simPreset = new SimulationPresets();
                 simPreset.setClientsPerDay(peoplePerDay.getText());
                 simPreset.setClientsPerSecond(peoplePerSecond.getText());
@@ -404,8 +412,9 @@ public class AppWindowAdmin {
                 simPreset.setPLN50((Integer) spinner_3.getValue());
                 simPreset.setPLN20((Integer) spinner_4.getValue());
                 simPreset.setPLN10((Integer) spinner_5.getValue());
-                // simPreset.setDaysToRefill((String) spinner_6.getValue());
+                simPreset.setDaysToRefill((Integer) spinner_6.getValue());
                 presenter.setSimulationSettings(simPreset);
+                presenter.startSimulation();
 
             }
         });

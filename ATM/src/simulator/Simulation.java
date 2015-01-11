@@ -2,7 +2,7 @@ package simulator;
 
 import java.util.TimerTask;
 
-import misc.Preferences;
+import misc.SimulationPresets;
 import ATM.ATM;
 import ATM.IATM;
 import client.AbstractClient;
@@ -35,14 +35,14 @@ public class Simulation extends TimerTask {
 
     }
 
-    public void setPreferences(Preferences preferences) {
-        client.setLowerWithdrawLimit(preferences.getLOWER_WITHDRAW_LIMIT());
-        client.setUpperWithdrawLimit(preferences.getUPPER_WITHDRAW_LIMIT());
-        pln200RefillCount = preferences.getPln200Count();
-        pln100RefillCount = preferences.getPln100Count();
-        pln50RefillCount = preferences.getPln50Count();
-        pln20RefillCount = preferences.getPln20Count();
-        pln10RefillCount = preferences.getPln10Count();
+    public void setPreferences(SimulationPresets preferences) {
+        client.setLowerWithdrawLimit(preferences.getWithdrawLowerLimit());
+        client.setUpperWithdrawLimit(preferences.getWithdrawUpperLimit());
+        pln200RefillCount = preferences.getPLN200();
+        pln100RefillCount = preferences.getPLN100();
+        pln50RefillCount = preferences.getPLN50();
+        pln20RefillCount = preferences.getPLN20();
+        pln10RefillCount = preferences.getPLN10();
     }
 
     public void fillATM() {

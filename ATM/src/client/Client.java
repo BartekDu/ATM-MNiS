@@ -11,9 +11,9 @@ public class Client extends AbstractClient {
     @Override
     public int getWithdrawRequest() {
         Random rand = new Random();
-        int request = rand.nextInt(upperWithdrawLimit) + 1;
-        while (request < lowerWithdrawLimit) {
-            request = rand.nextInt(upperWithdrawLimit) + 1;
+        int request = rand.nextInt(upperWithdrawLimit / 10) + 1;
+        while (request < lowerWithdrawLimit / 10) {
+            request = rand.nextInt(upperWithdrawLimit / 10) + 1;
 
         }
         request *= 10;
