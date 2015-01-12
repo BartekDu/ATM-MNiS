@@ -12,6 +12,7 @@ public class Simulator {
 	public static void main(String[] args) {
 		SimulationController simCont = new SimulationController();
 		Presenter presenter = new Presenter(simCont);
+		simCont.setPresenter(presenter);
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -30,6 +31,7 @@ public class Simulator {
 				}
 
 				AppWindowAdmin window = new AppWindowAdmin(presenter);
+				presenter.setGui(window);
 				// TODO Auto-generated method stub
 
 			}
