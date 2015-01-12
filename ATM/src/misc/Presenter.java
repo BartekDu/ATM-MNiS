@@ -1,25 +1,41 @@
 package misc;
 
 import simulator.SimulationController;
+import view.AppWindowAdmin;
 
 public class Presenter {
-    private SimulationController simulationController;
+	private SimulationController simulationController;
+	private AppWindowAdmin window;
 
-    public Presenter(SimulationController simulationController) {
-        this.simulationController = simulationController;
-    }
+	public Presenter(SimulationController simulationController) {
+		this.simulationController = simulationController;
+	}
 
-    public void startSimulation() {
-        simulationController.startSimulation();
-    }
+	public Presenter() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public void setSimulationSettings(SimulationPresets simulationPresets) {
+	public void startSimulation() {
+		simulationController.startSimulation();
+	}
 
-        simulationController.prepareSimulation(simulationPresets);
-    }
+	public void setSimulationSettings(SimulationPresets simulationPresets) {
 
-    public void stopSimulation() {
-        simulationController.stopSimulation();
-    }
+		simulationController.prepareSimulation(simulationPresets);
+	}
+
+	public void stopSimulation() {
+		simulationController.stopSimulation();
+	}
+
+	public void setElapsedDay(int i) {
+		window.setTimer(i);
+
+	}
+
+	public void setGui(AppWindowAdmin window) {
+		this.window = window;
+
+	}
 
 }

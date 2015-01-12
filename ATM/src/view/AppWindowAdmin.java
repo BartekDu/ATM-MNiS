@@ -38,6 +38,7 @@ public class AppWindowAdmin {
 	private JFrame frame_1;
 	private JSpinner spinnerRefillAfterNDays = new JSpinner();
 	private JLabel labelTimer;
+	private JTextField simulationLenght;
 
 	/**
 	 * Launch the application.
@@ -82,7 +83,7 @@ public class AppWindowAdmin {
 
 	private void initialize() {
 		frame = createMainFrame();
-		// TODO dlugos spinner dostosowana do int 3 digit
+
 		JPanel panelMain = new JPanel();
 		panelMain.setBounds(0, 0, 434, 315);
 		frame_1.getContentPane().add(panelMain);
@@ -268,7 +269,7 @@ public class AppWindowAdmin {
 		clientsPerDayMax.setColumns(10);
 
 		JPanel panelOtherConstants = new JPanel();
-		panelOtherConstants.setBounds(190, 175, 234, 43);
+		panelOtherConstants.setBounds(190, 168, 234, 74);
 		panelMain.add(panelOtherConstants);
 		panelOtherConstants.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelOtherConstants.setLayout(null);
@@ -278,10 +279,22 @@ public class AppWindowAdmin {
 		panelOtherConstants.add(lblIloKlientowNa);
 
 		clientsPerSecond = new JTextField();
-		clientsPerSecond.setBounds(142, 16, 86, 20);
+		clientsPerSecond.setBounds(142, 10, 86, 20);
 		panelOtherConstants.add(clientsPerSecond);
 		clientsPerSecond.setText("100");
 		clientsPerSecond.setColumns(10);
+
+		JLabel labelSimulationDays = new JLabel("D\u0142ugo\u015B\u0107 symulacji");
+		labelSimulationDays.setToolTipText("Dni");
+		labelSimulationDays.setBounds(6, 42, 126, 14);
+		panelOtherConstants.add(labelSimulationDays);
+
+		simulationLenght = new JTextField();
+		simulationLenght.setToolTipText("Dni");
+		simulationLenght.setText("10");
+		simulationLenght.setColumns(10);
+		simulationLenght.setBounds(142, 39, 86, 20);
+		panelOtherConstants.add(simulationLenght);
 
 		JButton btnWstrzymaj = new JButton("Wstrzymaj");
 		btnWstrzymaj.setBounds(216, 248, 89, 27);
@@ -312,6 +325,7 @@ public class AppWindowAdmin {
 				simPreset.setPLN20((Integer) spinner20.getValue());
 				simPreset.setPLN10((Integer) spinner10.getValue());
 				simPreset.setDaysToRefill((Integer) spinnerRefillAfterNDays.getValue());
+				simPreset.setSimulationLenght(simulationLenght.getText());
 				presenter.setSimulationSettings(simPreset);
 				presenter.startSimulation();
 
@@ -353,5 +367,10 @@ public class AppWindowAdmin {
 
 	protected void setLabelTimerText(String text) {
 		labelTimer.setText(text);
+	}
+
+	public void setTimer(int i) {
+		setLabelTimerText("" + i);
+
 	}
 }

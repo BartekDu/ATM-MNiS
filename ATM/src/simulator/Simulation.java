@@ -3,6 +3,7 @@ package simulator;
 import java.util.Random;
 import java.util.TimerTask;
 
+import misc.Presenter;
 import misc.SimulationPresets;
 import misc.Writer;
 import ATM.ATM;
@@ -35,8 +36,10 @@ public class Simulation extends TimerTask {
 
 	private int refillFrequency;
 
-	public Simulation() {
+	private Presenter presenter;
 
+	public Simulation(Presenter presenter) {
+		this.presenter = presenter;
 		atm = new ATM();
 		client = new Client();
 		writer = new Writer();
@@ -60,6 +63,7 @@ public class Simulation extends TimerTask {
 			writer.write(System.lineSeparator() + "Rozpoczeto " + (dayCounter + 1) + " dobê. Iloœæ klientów: "
 					+ dailyClientsLimit + System.lineSeparator());
 			// TODO tutaj obsloga licznika ?
+			presenter.setElapsedDay(dayCounter + 1);
 			dayCounter++;
 		}
 		atm.nextClient(client);
@@ -101,5 +105,13 @@ public class Simulation extends TimerTask {
 
 		return count;
 
+	}
+
+	public Presenter getPresenter() {
+		return presenter;
+	}
+
+	public void setPresenter(Presenter presenter) {
+		this.presenter = presenter;
 	}
 }
