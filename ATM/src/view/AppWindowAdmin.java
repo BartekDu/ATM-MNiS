@@ -296,9 +296,9 @@ public class AppWindowAdmin {
 		simulationLenght.setBounds(142, 39, 86, 20);
 		panelOtherConstants.add(simulationLenght);
 
-		JButton btnWstrzymaj = new JButton("Wstrzymaj");
-		btnWstrzymaj.setBounds(216, 248, 89, 27);
-		btnWstrzymaj.addActionListener(new ActionListener() {
+		JButton btnStop = new JButton("Stop");
+		btnStop.setBounds(216, 248, 89, 27);
+		btnStop.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -306,10 +306,10 @@ public class AppWindowAdmin {
 
 			}
 		});
-		panelMain.add(btnWstrzymaj);
+		panelMain.add(btnStop);
 
-		JButton buttonWznow = new JButton("Wzn\u00F3w");
-		buttonWznow.addActionListener(new ActionListener() {
+		JButton buttonStart = new JButton("Start");
+		buttonStart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO tutaj masz co sie dzieje po nacisnieciu wznow
@@ -331,8 +331,8 @@ public class AppWindowAdmin {
 
 			}
 		});
-		buttonWznow.setBounds(321, 248, 89, 27);
-		panelMain.add(buttonWznow);
+		buttonStart.setBounds(321, 248, 89, 27);
+		panelMain.add(buttonStart);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Dzieñ symulacji", TitledBorder.LEADING, TitledBorder.TOP, null, null));
