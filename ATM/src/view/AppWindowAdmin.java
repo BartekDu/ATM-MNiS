@@ -220,11 +220,11 @@ public class AppWindowAdmin {
 				null, null));
 		panelWithdrawalLimits.setLayout(null);
 
-		JLabel lblGrnaGranicaWypaty = new JLabel("Dolny");
+		JLabel lblGrnaGranicaWypaty = new JLabel("G\u00F3rny");
 		lblGrnaGranicaWypaty.setBounds(95, 44, 37, 14);
 		panelWithdrawalLimits.add(lblGrnaGranicaWypaty);
 
-		JLabel lblGrny = new JLabel("G\u00F3rny");
+		JLabel lblGrny = new JLabel("Dolny");
 		lblGrny.setBounds(95, 19, 37, 14);
 		panelWithdrawalLimits.add(lblGrny);
 
@@ -244,7 +244,7 @@ public class AppWindowAdmin {
 		JPanel panelClientsPerSecondLimits = new JPanel();
 		panelClientsPerSecondLimits.setBounds(190, 90, 234, 74);
 		panelMain.add(panelClientsPerSecondLimits);
-		panelClientsPerSecondLimits.setBorder(new TitledBorder(null, "Iloœæ klientow na sekundê", TitledBorder.LEADING,
+		panelClientsPerSecondLimits.setBorder(new TitledBorder(null, "Iloœæ klientow na dobê", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
 		panelClientsPerSecondLimits.setLayout(null);
 
@@ -255,7 +255,7 @@ public class AppWindowAdmin {
 		clientsPerDayMin = new JTextField();
 		clientsPerDayMin.setBounds(142, 16, 86, 20);
 		panelClientsPerSecondLimits.add(clientsPerDayMin);
-		clientsPerDayMin.setText("100");
+		clientsPerDayMin.setText("25");
 		clientsPerDayMin.setColumns(10);
 
 		JLabel lblMaksymalna = new JLabel("Maksymalna");
@@ -265,7 +265,7 @@ public class AppWindowAdmin {
 		clientsPerDayMax = new JTextField();
 		clientsPerDayMax.setBounds(142, 47, 86, 20);
 		panelClientsPerSecondLimits.add(clientsPerDayMax);
-		clientsPerDayMax.setText("100");
+		clientsPerDayMax.setText("200");
 		clientsPerDayMax.setColumns(10);
 
 		JPanel panelOtherConstants = new JPanel();
@@ -373,4 +373,8 @@ public class AppWindowAdmin {
 		setLabelTimerText("" + i);
 
 	}
+	// TODO Klient w dobie: 1 ==>biez
+	// TODO kwota wyplacona, pozostala
+	// TODO kazdy k. osobny czas max 2 min => zaznaczyc przeliczenie
+	// TODO tl k na d maks <min
 }
