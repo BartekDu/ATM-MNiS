@@ -1,0 +1,6 @@
+statystyka prosta
+javadoc - biblioteka gotowa do importu i to zawarte w opracowaniu
+uml
+przyjsc na konsultacje
+java graph
+rozklad studenta aproksymacja - piekny wykresik
