@@ -1,41 +1,48 @@
 package misc;
 
+import java.util.List;
+
 import simulator.SimulationController;
 import view.AppWindowAdmin;
 
 public class Presenter {
-	private SimulationController simulationController;
-	private AppWindowAdmin window;
+    private SimulationController simulationController;
 
-	public Presenter(SimulationController simulationController) {
-		this.simulationController = simulationController;
-	}
+    private AppWindowAdmin window;
 
-	public Presenter() {
-		// TODO Auto-generated constructor stub
-	}
+    public Presenter(SimulationController simulationController) {
+        this.simulationController = simulationController;
+    }
 
-	public void startSimulation() {
-		simulationController.startSimulation();
-	}
+    public Presenter() {
+        // TODO Auto-generated constructor stub
+    }
 
-	public void setSimulationSettings(SimulationPresets simulationPresets) {
+    public void startSimulation() {
+        simulationController.startSimulation();
+    }
 
-		simulationController.prepareSimulation(simulationPresets);
-	}
+    public void setSimulationSettings(SimulationPresets simulationPresets) {
 
-	public void stopSimulation() {
-		simulationController.stopSimulation();
-	}
+        simulationController.prepareSimulation(simulationPresets);
+    }
 
-	public void setElapsedDay(int i) {
-		window.setTimer(i);
+    public void stopSimulation() {
+        simulationController.stopSimulation();
+    }
 
-	}
+    public void setElapsedDay(int i) {
+        window.setTimer(i);
 
-	public void setGui(AppWindowAdmin window) {
-		this.window = window;
+    }
 
-	}
+    public List<Integer> getHistory() {
+        return simulationController.getBalanceHistory();
+    }
+
+    public void setGui(AppWindowAdmin window) {
+        this.window = window;
+
+    }
 
 }

@@ -1,5 +1,7 @@
 package ATM;
 
+import java.util.List;
+
 import misc.IterarionLog;
 import client.AbstractClient;
 
@@ -11,4 +13,6 @@ public interface IATM {
             int additionalPLN10Count);
 
     public IterarionLog getTransactionInformation();
+
+    public List<Integer> getBalanceHistory();
 }

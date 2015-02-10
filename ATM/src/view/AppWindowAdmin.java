@@ -21,360 +21,362 @@ import misc.SimulationPresets;
 
 public class AppWindowAdmin {
 
-	private JFrame frame;
+    private JFrame frame;
 
-	private JTextField lowerWithdrawal;
+    private JTextField lowerWithdrawal;
 
-	private JTextField upperWithdrawal;
+    private JTextField upperWithdrawal;
 
-	private JTextField clientsPerDayMin;
+    private JTextField clientsPerDayMin;
 
-	private JTextField clientsPerSecond;
+    private JTextField clientsPerSecond;
 
-	private Presenter presenter;
+    private Presenter presenter;
 
-	private SimulationPresets simPreset;
-	private JTextField clientsPerDayMax;
-	private JFrame frame_1;
-	private JSpinner spinnerRefillAfterNDays = new JSpinner();
-	private JLabel labelTimer;
-	private JTextField simulationLenght;
+    private SimulationPresets simPreset;
 
-	/**
-	 * Launch the application.
-	 */
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// AppWindowAdmin window = new AppWindowAdmin();
-	// window.frame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
+    private JTextField clientsPerDayMax;
 
-	/**
-	 * Create the application.
-	 * 
-	 * @param presenter
-	 */
-	public AppWindowAdmin(Presenter presenter) {
-		this.presenter = presenter;
-		initialize();
-		frame.setVisible(true);
+    private JFrame frame_1;
 
-	}
+    private JSpinner spinnerRefillAfterNDays = new JSpinner();
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private JFrame createMainFrame() { // TODO smth like dis
-		frame_1 = new JFrame();
-		frame_1.setType(Type.POPUP);
-		frame_1.setResizable(false);
-		frame_1.setBounds(100, 100, 450, 343);
-		frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame_1.getContentPane().setLayout(null);
-		return frame_1;
-	}
+    private JLabel labelTimer;
 
-	private void initialize() {
-		frame = createMainFrame();
+    private JTextField simulationLenght;
 
-		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 0, 434, 315);
-		frame_1.getContentPane().add(panelMain);
-		panelMain.setLayout(null);
+    /**
+     * Launch the application.
+     */
+    // public static void main(String[] args) {
+    // EventQueue.invokeLater(new Runnable() {
+    // public void run() {
+    // try {
+    // AppWindowAdmin window = new AppWindowAdmin();
+    // window.frame.setVisible(true);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    // }
+    // });
+    // }
 
-		JPanel panelAvNotesSettings = new JPanel();
-		panelAvNotesSettings.setLayout(null);
-		// TODO tutaj
-		setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
-		panelAvNotesSettings.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
-		panelAvNotesSettings.setBounds(21, 11, 149, 231);
-		panelMain.add(panelAvNotesSettings);
+    /**
+     * Create the application.
+     * 
+     * @param presenter
+     */
+    public AppWindowAdmin(Presenter presenter) {
+        this.presenter = presenter;
+        initialize();
+        frame.setVisible(true);
 
-		JPanel panelNotesLabels = new JPanel();
-		panelNotesLabels.setLayout(null);
-		panelNotesLabels.setBounds(10, 19, 46, 114);
-		panelAvNotesSettings.add(panelNotesLabels);
+    }
 
-		JLabel label = new JLabel("200 PLN");
-		label.setBounds(0, 0, 46, 14);
-		panelNotesLabels.add(label);
+    /**
+     * Initialize the contents of the frame.
+     */
+    private JFrame createMainFrame() { // TODO smth like dis
+        frame_1 = new JFrame();
+        frame_1.setType(Type.POPUP);
+        frame_1.setResizable(false);
+        frame_1.setBounds(100, 100, 450, 343);
+        frame_1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame_1.getContentPane().setLayout(null);
+        return frame_1;
+    }
 
-		JLabel label_1 = new JLabel("100 PLN");
-		label_1.setBounds(0, 25, 46, 14);
-		panelNotesLabels.add(label_1);
+    private void initialize() {
+        frame = createMainFrame();
 
-		JLabel label_2 = new JLabel("50 PLN");
-		label_2.setBounds(0, 50, 46, 14);
-		panelNotesLabels.add(label_2);
+        JPanel panelMain = new JPanel();
+        panelMain.setBounds(0, 0, 434, 315);
+        frame_1.getContentPane().add(panelMain);
+        panelMain.setLayout(null);
 
-		JLabel label_3 = new JLabel("20 PLN");
-		label_3.setBounds(0, 75, 46, 14);
-		panelNotesLabels.add(label_3);
+        JPanel panelAvNotesSettings = new JPanel();
+        panelAvNotesSettings.setLayout(null);
+        // TODO tutaj
+        setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
+        panelAvNotesSettings.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panelAvNotesSettings.setBounds(21, 11, 149, 231);
+        panelMain.add(panelAvNotesSettings);
 
-		JLabel label_4 = new JLabel("10 PLN");
-		label_4.setBounds(0, 100, 46, 14);
-		panelNotesLabels.add(label_4);
+        JPanel panelNotesLabels = new JPanel();
+        panelNotesLabels.setLayout(null);
+        panelNotesLabels.setBounds(10, 19, 46, 114);
+        panelAvNotesSettings.add(panelNotesLabels);
 
-		JPanel panelSpinners = new JPanel();
-		panelSpinners.setLayout(null);
-		panelSpinners.setBounds(76, 19, 46, 120);
-		panelAvNotesSettings.add(panelSpinners);
+        JLabel label = new JLabel("200 PLN");
+        label.setBounds(0, 0, 46, 14);
+        panelNotesLabels.add(label);
 
-		JSpinner spinner200 = new JSpinner();
-		spinner200.setModel(new SpinnerNumberModel(100, 0, 999, 1));
-		spinner200.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
+        JLabel label_1 = new JLabel("100 PLN");
+        label_1.setBounds(0, 25, 46, 14);
+        panelNotesLabels.add(label_1);
 
-			}
-		});
-		spinner200.setBounds(0, 0, 43, 20);
+        JLabel label_2 = new JLabel("50 PLN");
+        label_2.setBounds(0, 50, 46, 14);
+        panelNotesLabels.add(label_2);
 
-		panelSpinners.add(spinner200);
+        JLabel label_3 = new JLabel("20 PLN");
+        label_3.setBounds(0, 75, 46, 14);
+        panelNotesLabels.add(label_3);
 
-		JSpinner spinner100 = new JSpinner();
-		spinner100.setModel(new SpinnerNumberModel(100, 0, 999, 1));
-		spinner100.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-			}
-		});
-		spinner100.setBounds(0, 25, 43, 20);
-		panelSpinners.add(spinner100);
+        JLabel label_4 = new JLabel("10 PLN");
+        label_4.setBounds(0, 100, 46, 14);
+        panelNotesLabels.add(label_4);
 
-		JSpinner spinner50 = new JSpinner();
-		spinner50.setModel(new SpinnerNumberModel(100, 0, 999, 1));
-		spinner50.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-			}
-		});
-		spinner50.setBounds(0, 50, 43, 20);
-		panelSpinners.add(spinner50);
+        JPanel panelSpinners = new JPanel();
+        panelSpinners.setLayout(null);
+        panelSpinners.setBounds(76, 19, 46, 120);
+        panelAvNotesSettings.add(panelSpinners);
 
-		JSpinner spinner20 = new JSpinner();
-		spinner20.setModel(new SpinnerNumberModel(100, 0, 999, 1));
-		spinner20.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-			}
-		});
-		spinner20.setBounds(0, 75, 43, 20);
-		panelSpinners.add(spinner20);
+        JSpinner spinner200 = new JSpinner();
+        spinner200.setModel(new SpinnerNumberModel(100, 0, 999, 1));
+        spinner200.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
 
-		JSpinner spinner10 = new JSpinner();
-		spinner10.setModel(new SpinnerNumberModel(100, 0, 999, 1));
-		spinner10.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-			}
-		});
-		spinner10.setBounds(0, 100, 43, 20);
-		panelSpinners.add(spinner10);
+            }
+        });
+        spinner200.setBounds(0, 0, 43, 20);
 
-		JButton buttonRestAvNotes = new JButton("Resetuj");
-		buttonRestAvNotes.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				spinner200.setValue(new Integer(100));
-				spinner100.setValue(new Integer(100));
-				spinner50.setValue(new Integer(100));
-				spinner20.setValue(new Integer(100));
-				spinner10.setValue(new Integer(100));
+        panelSpinners.add(spinner200);
 
-			}
-		});
-		buttonRestAvNotes.setBounds(16, 144, 89, 23);
-		panelAvNotesSettings.add(buttonRestAvNotes);
+        JSpinner spinner100 = new JSpinner();
+        spinner100.setModel(new SpinnerNumberModel(100, 0, 999, 1));
+        spinner100.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+            }
+        });
+        spinner100.setBounds(0, 25, 43, 20);
+        panelSpinners.add(spinner100);
 
-		JLabel lblUzupenijPo = new JLabel("Uzupe\u0142nij po");
-		lblUzupenijPo.setBounds(7, 178, 59, 14);
-		panelAvNotesSettings.add(lblUzupenijPo);
+        JSpinner spinner50 = new JSpinner();
+        spinner50.setModel(new SpinnerNumberModel(100, 0, 999, 1));
+        spinner50.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+            }
+        });
+        spinner50.setBounds(0, 50, 43, 20);
+        panelSpinners.add(spinner50);
 
-		spinnerRefillAfterNDays.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinnerRefillAfterNDays.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
-			}
-		});
-		spinnerRefillAfterNDays.setBounds(67, 175, 38, 20);
-		panelAvNotesSettings.add(spinnerRefillAfterNDays);
+        JSpinner spinner20 = new JSpinner();
+        spinner20.setModel(new SpinnerNumberModel(100, 0, 999, 1));
+        spinner20.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+            }
+        });
+        spinner20.setBounds(0, 75, 43, 20);
+        panelSpinners.add(spinner20);
 
-		JLabel lblDniach = new JLabel("dniach");
-		lblDniach.setBounds(106, 178, 46, 14);
-		panelAvNotesSettings.add(lblDniach);
+        JSpinner spinner10 = new JSpinner();
+        spinner10.setModel(new SpinnerNumberModel(100, 0, 999, 1));
+        spinner10.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+            }
+        });
+        spinner10.setBounds(0, 100, 43, 20);
+        panelSpinners.add(spinner10);
 
-		JPanel panelWithdrawalLimits = new JPanel();
-		panelWithdrawalLimits.setBounds(190, 11, 234, 68);
-		panelMain.add(panelWithdrawalLimits);
-		panelWithdrawalLimits.setBorder(new TitledBorder(null, "Limit wyp³aty", TitledBorder.LEADING, TitledBorder.TOP,
-				null, null));
-		panelWithdrawalLimits.setLayout(null);
+        JButton buttonRestAvNotes = new JButton("Resetuj");
+        buttonRestAvNotes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                spinner200.setValue(new Integer(100));
+                spinner100.setValue(new Integer(100));
+                spinner50.setValue(new Integer(100));
+                spinner20.setValue(new Integer(100));
+                spinner10.setValue(new Integer(100));
 
-		JLabel lblGrnaGranicaWypaty = new JLabel("G\u00F3rny");
-		lblGrnaGranicaWypaty.setBounds(95, 44, 37, 14);
-		panelWithdrawalLimits.add(lblGrnaGranicaWypaty);
+            }
+        });
+        buttonRestAvNotes.setBounds(16, 144, 89, 23);
+        panelAvNotesSettings.add(buttonRestAvNotes);
 
-		JLabel lblGrny = new JLabel("Dolny");
-		lblGrny.setBounds(95, 19, 37, 14);
-		panelWithdrawalLimits.add(lblGrny);
+        JLabel lblUzupenijPo = new JLabel("Uzupe\u0142nij po");
+        lblUzupenijPo.setBounds(7, 178, 59, 14);
+        panelAvNotesSettings.add(lblUzupenijPo);
 
-		lowerWithdrawal = new JTextField();
-		lowerWithdrawal.setBounds(142, 16, 86, 20);
-		panelWithdrawalLimits.add(lowerWithdrawal);
-		lowerWithdrawal.setToolTipText("Najni\u017Csza dozwolona kwota wyp\u0142aty");
-		lowerWithdrawal.setText("10");
-		lowerWithdrawal.setColumns(10);
+        spinnerRefillAfterNDays.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+        spinnerRefillAfterNDays.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent arg0) {
+                setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
+            }
+        });
+        spinnerRefillAfterNDays.setBounds(67, 175, 38, 20);
+        panelAvNotesSettings.add(spinnerRefillAfterNDays);
 
-		upperWithdrawal = new JTextField();
-		upperWithdrawal.setBounds(142, 41, 86, 20);
-		panelWithdrawalLimits.add(upperWithdrawal);
-		upperWithdrawal.setText("3000");
-		upperWithdrawal.setColumns(10);
+        JLabel lblDniach = new JLabel("dniach");
+        lblDniach.setBounds(106, 178, 46, 14);
+        panelAvNotesSettings.add(lblDniach);
 
-		JPanel panelClientsPerSecondLimits = new JPanel();
-		panelClientsPerSecondLimits.setBounds(190, 90, 234, 74);
-		panelMain.add(panelClientsPerSecondLimits);
-		panelClientsPerSecondLimits.setBorder(new TitledBorder(null, "Iloœæ klientow na dobê", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
-		panelClientsPerSecondLimits.setLayout(null);
+        JPanel panelWithdrawalLimits = new JPanel();
+        panelWithdrawalLimits.setBounds(190, 11, 234, 68);
+        panelMain.add(panelWithdrawalLimits);
+        panelWithdrawalLimits.setBorder(new TitledBorder(null, "Limit wyp³aty", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panelWithdrawalLimits.setLayout(null);
 
-		JLabel lblLiczbaKlijentwNa = new JLabel("Minimalna");
-		lblLiczbaKlijentwNa.setBounds(76, 19, 56, 14);
-		panelClientsPerSecondLimits.add(lblLiczbaKlijentwNa);
-		// TODO pawel tu masz te <x,y> uzywaj
-		clientsPerDayMin = new JTextField();
-		clientsPerDayMin.setBounds(142, 16, 86, 20);
-		panelClientsPerSecondLimits.add(clientsPerDayMin);
-		clientsPerDayMin.setText("25");
-		clientsPerDayMin.setColumns(10);
+        JLabel lblGrnaGranicaWypaty = new JLabel("G\u00F3rny");
+        lblGrnaGranicaWypaty.setBounds(95, 44, 37, 14);
+        panelWithdrawalLimits.add(lblGrnaGranicaWypaty);
 
-		JLabel lblMaksymalna = new JLabel("Maksymalna");
-		lblMaksymalna.setBounds(66, 50, 66, 14);
-		panelClientsPerSecondLimits.add(lblMaksymalna);
+        JLabel lblGrny = new JLabel("Dolny");
+        lblGrny.setBounds(95, 19, 37, 14);
+        panelWithdrawalLimits.add(lblGrny);
 
-		clientsPerDayMax = new JTextField();
-		clientsPerDayMax.setBounds(142, 47, 86, 20);
-		panelClientsPerSecondLimits.add(clientsPerDayMax);
-		clientsPerDayMax.setText("200");
-		clientsPerDayMax.setColumns(10);
+        lowerWithdrawal = new JTextField();
+        lowerWithdrawal.setBounds(142, 16, 86, 20);
+        panelWithdrawalLimits.add(lowerWithdrawal);
+        lowerWithdrawal.setToolTipText("Najni\u017Csza dozwolona kwota wyp\u0142aty");
+        lowerWithdrawal.setText("10");
+        lowerWithdrawal.setColumns(10);
 
-		JPanel panelOtherConstants = new JPanel();
-		panelOtherConstants.setBounds(190, 168, 234, 74);
-		panelMain.add(panelOtherConstants);
-		panelOtherConstants.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelOtherConstants.setLayout(null);
+        upperWithdrawal = new JTextField();
+        upperWithdrawal.setBounds(142, 41, 86, 20);
+        panelWithdrawalLimits.add(upperWithdrawal);
+        upperWithdrawal.setText("3000");
+        upperWithdrawal.setColumns(10);
 
-		JLabel lblIloKlientowNa = new JLabel("Ilo\u015B\u0107 klientow na sekund\u0119");
-		lblIloKlientowNa.setBounds(6, 16, 126, 14);
-		panelOtherConstants.add(lblIloKlientowNa);
+        JPanel panelClientsPerSecondLimits = new JPanel();
+        panelClientsPerSecondLimits.setBounds(190, 90, 234, 74);
+        panelMain.add(panelClientsPerSecondLimits);
+        panelClientsPerSecondLimits.setBorder(new TitledBorder(null, "Iloœæ klientow na dobê", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panelClientsPerSecondLimits.setLayout(null);
 
-		clientsPerSecond = new JTextField();
-		clientsPerSecond.setBounds(142, 10, 86, 20);
-		panelOtherConstants.add(clientsPerSecond);
-		clientsPerSecond.setText("100");
-		clientsPerSecond.setColumns(10);
+        JLabel lblLiczbaKlijentwNa = new JLabel("Minimalna");
+        lblLiczbaKlijentwNa.setBounds(76, 19, 56, 14);
+        panelClientsPerSecondLimits.add(lblLiczbaKlijentwNa);
+        // TODO pawel tu masz te <x,y> uzywaj
+        clientsPerDayMin = new JTextField();
+        clientsPerDayMin.setBounds(142, 16, 86, 20);
+        panelClientsPerSecondLimits.add(clientsPerDayMin);
+        clientsPerDayMin.setText("25");
+        clientsPerDayMin.setColumns(10);
 
-		JLabel labelSimulationDays = new JLabel("D\u0142ugo\u015B\u0107 symulacji");
-		labelSimulationDays.setToolTipText("Dni");
-		labelSimulationDays.setBounds(6, 42, 126, 14);
-		panelOtherConstants.add(labelSimulationDays);
+        JLabel lblMaksymalna = new JLabel("Maksymalna");
+        lblMaksymalna.setBounds(66, 50, 66, 14);
+        panelClientsPerSecondLimits.add(lblMaksymalna);
 
-		simulationLenght = new JTextField();
-		simulationLenght.setToolTipText("Dni");
-		simulationLenght.setText("10");
-		simulationLenght.setColumns(10);
-		simulationLenght.setBounds(142, 39, 86, 20);
-		panelOtherConstants.add(simulationLenght);
+        clientsPerDayMax = new JTextField();
+        clientsPerDayMax.setBounds(142, 47, 86, 20);
+        panelClientsPerSecondLimits.add(clientsPerDayMax);
+        clientsPerDayMax.setText("200");
+        clientsPerDayMax.setColumns(10);
 
-		JButton btnStop = new JButton("Stop");
-		btnStop.setBounds(216, 248, 89, 27);
-		btnStop.addActionListener(new ActionListener() {
+        JPanel panelOtherConstants = new JPanel();
+        panelOtherConstants.setBounds(190, 168, 234, 74);
+        panelMain.add(panelOtherConstants);
+        panelOtherConstants.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panelOtherConstants.setLayout(null);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				presenter.stopSimulation();
+        JLabel lblIloKlientowNa = new JLabel("Ilo\u015B\u0107 klientow na sekund\u0119");
+        lblIloKlientowNa.setBounds(6, 16, 126, 14);
+        panelOtherConstants.add(lblIloKlientowNa);
 
-			}
-		});
-		panelMain.add(btnStop);
+        clientsPerSecond = new JTextField();
+        clientsPerSecond.setBounds(142, 10, 86, 20);
+        panelOtherConstants.add(clientsPerSecond);
+        clientsPerSecond.setText("100");
+        clientsPerSecond.setColumns(10);
 
-		JButton buttonStart = new JButton("Start");
-		buttonStart.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO tutaj masz co sie dzieje po nacisnieciu wznow
-				simPreset = new SimulationPresets();
-				simPreset.setClientsPerDayMin(clientsPerDayMin.getText());
-				simPreset.setClientsPerDayMax(clientsPerDayMax.getText());
-				simPreset.setClientsPerSecond(clientsPerSecond.getText());
-				simPreset.setWithdrawLowerLimit(lowerWithdrawal.getText());
-				simPreset.setWithdrawUpperLimit(upperWithdrawal.getText());
-				simPreset.setPLN200((Integer) spinner200.getValue());
-				simPreset.setPLN100((Integer) spinner100.getValue());
-				simPreset.setPLN50((Integer) spinner50.getValue());
-				simPreset.setPLN20((Integer) spinner20.getValue());
-				simPreset.setPLN10((Integer) spinner10.getValue());
-				simPreset.setDaysToRefill((Integer) spinnerRefillAfterNDays.getValue());
-				simPreset.setSimulationLenght(simulationLenght.getText());
-				presenter.setSimulationSettings(simPreset);
-				presenter.startSimulation();
+        JLabel labelSimulationDays = new JLabel("D\u0142ugo\u015B\u0107 symulacji");
+        labelSimulationDays.setToolTipText("Dni");
+        labelSimulationDays.setBounds(6, 42, 126, 14);
+        panelOtherConstants.add(labelSimulationDays);
 
-			}
-		});
-		buttonStart.setBounds(321, 248, 89, 27);
-		panelMain.add(buttonStart);
+        simulationLenght = new JTextField();
+        simulationLenght.setToolTipText("Dni");
+        simulationLenght.setText("10");
+        simulationLenght.setColumns(10);
+        simulationLenght.setBounds(142, 39, 86, 20);
+        panelOtherConstants.add(simulationLenght);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Dzieñ symulacji", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(15, 248, 161, 56);
-		panelMain.add(panel);
-		panel.setLayout(null);
+        JButton btnStop = new JButton("Stop");
+        btnStop.setBounds(216, 248, 89, 27);
+        btnStop.addActionListener(new ActionListener() {
 
-		labelTimer = new JLabel("0");
-		labelTimer.setBounds(6, 16, 149, 33);
-		panel.add(labelTimer);
-		labelTimer.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                presenter.stopSimulation();
+                // TODO tutaj
 
-	}
+            }
+        });
+        panelMain.add(btnStop);
 
-	public void setDynamicIntervalInNominalSpinnersBorder(JPanel panelAvNotesSettings) {
-		panelAvNotesSettings
-				.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w, kt\u00F3re b\u0119d\u0105 dostaczone w "
-						+ spinnerRefillAfterNDays.getValue() + " dniowym interwale z mennicy");
-	}
+        JButton buttonStart = new JButton("Start");
+        buttonStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO tutaj masz co sie dzieje po nacisnieciu wznow
+                simPreset = new SimulationPresets();
+                simPreset.setClientsPerDayMin(clientsPerDayMin.getText());
+                simPreset.setClientsPerDayMax(clientsPerDayMax.getText());
+                simPreset.setClientsPerSecond(clientsPerSecond.getText());
+                simPreset.setWithdrawLowerLimit(lowerWithdrawal.getText());
+                simPreset.setWithdrawUpperLimit(upperWithdrawal.getText());
+                simPreset.setPLN200((Integer) spinner200.getValue());
+                simPreset.setPLN100((Integer) spinner100.getValue());
+                simPreset.setPLN50((Integer) spinner50.getValue());
+                simPreset.setPLN20((Integer) spinner20.getValue());
+                simPreset.setPLN10((Integer) spinner10.getValue());
+                simPreset.setDaysToRefill((Integer) spinnerRefillAfterNDays.getValue());
+                simPreset.setSimulationLenght(simulationLenght.getText());
+                presenter.setSimulationSettings(simPreset);
+                presenter.startSimulation();
 
-	public SimulationPresets getSimulationPreset() {
-		return simPreset;
-	}
+            }
+        });
+        buttonStart.setBounds(321, 248, 89, 27);
+        panelMain.add(buttonStart);
 
-	public void setSimulationPreset(SimulationPresets simPreset) {
-		this.simPreset = simPreset;
-	}
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, "Dzieñ symulacji", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        panel.setBounds(15, 248, 161, 56);
+        panelMain.add(panel);
+        panel.setLayout(null);
 
-	protected String getLabelTimerText() {
-		return labelTimer.getText();
-	}
+        labelTimer = new JLabel("0");
+        labelTimer.setBounds(6, 16, 149, 33);
+        panel.add(labelTimer);
+        labelTimer.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-	protected void setLabelTimerText(String text) {
-		labelTimer.setText(text);
-	}
+    }
 
-	public void setTimer(int i) {
-		setLabelTimerText("" + i);
+    public void setDynamicIntervalInNominalSpinnersBorder(JPanel panelAvNotesSettings) {
+        panelAvNotesSettings.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w, kt\u00F3re b\u0119d\u0105 dostaczone w "
+                + spinnerRefillAfterNDays.getValue() + " dniowym interwale z mennicy");
+    }
 
-	}
-	// TODO Klient w dobie: 1 ==>biez
-	// TODO kwota wyplacona, pozostala
-	// TODO kazdy k. osobny czas max 2 min => zaznaczyc przeliczenie
-	// TODO tl k na d maks <min
+    public SimulationPresets getSimulationPreset() {
+        return simPreset;
+    }
+
+    public void setSimulationPreset(SimulationPresets simPreset) {
+        this.simPreset = simPreset;
+    }
+
+    protected String getLabelTimerText() {
+        return labelTimer.getText();
+    }
+
+    protected void setLabelTimerText(String text) {
+        labelTimer.setText(text);
+    }
+
+    public void setTimer(int i) {
+        setLabelTimerText("" + i);
+
+    }
+    // TODO Klient w dobie: 1 ==>biez
+    // TODO kwota wyplacona, pozostala
+    // TODO kazdy k. osobny czas max 2 min => zaznaczyc przeliczenie
+    // TODO tl k na d maks <min
 }
