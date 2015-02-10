@@ -23,7 +23,7 @@ import misc.SimulationPresets;
 public class AppWindowAdmin {
 
 	private JFrame frame;
-
+	private JButton buttonStart = new JButton("Start");
 	private JTextField lowerWithdrawal;
 
 	private JTextField upperWithdrawal;
@@ -45,6 +45,7 @@ public class AppWindowAdmin {
 	private JLabel labelTimer;
 
 	private JTextField simulationLenght;
+	private JButton btnStop = new JButton("Stop");
 
 	/**
 	 * Launch the application.
@@ -318,27 +319,19 @@ public class AppWindowAdmin {
 		simulationLenght.setBounds(142, 39, 86, 20);
 		panelOtherConstants.add(simulationLenght);
 
-		JButton btnStop = new JButton("Stop");
 		btnStop.setEnabled(false);
 		btnStop.setBounds(216, 248, 89, 27);
 		btnStop.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Integer> withdrawalHistory = presenter.getHistory();
-				presenter.stopSimulation();
-				// TODO tutaj
+				stopGUI();
 				btnStop.setEnabled(false);
-
-				SomeWindow graphWindow = new SomeWindow(withdrawalHistory);
-				graphWindow.getFrame().setVisible(true);
-				graphWindow.setAlwaysOnTop(true);
-
 			}
+
 		});
 		panelMain.add(btnStop);
 
-		JButton buttonStart = new JButton("Start");
 		buttonStart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -360,7 +353,7 @@ public class AppWindowAdmin {
 				presenter.setSimulationSettings(simPreset);
 				presenter.startSimulation();
 				btnStop.setEnabled(true);
-
+				buttonStart.setEnabled(false);
 			}
 		});
 		buttonStart.setBounds(321, 248, 89, 27);
@@ -407,6 +400,18 @@ public class AppWindowAdmin {
 	public void setTimer(int i) {
 		setLabelTimerText("" + i);
 
+	}
+
+	public void stopGUI() {
+		List<Integer> withdrawalHistory = presenter.getHistory();
+		presenter.stopSimulation();
+		// TODO tutaj
+
+		SomeWindow graphWindow = new SomeWindow(withdrawalHistory);
+		graphWindow.getFrame().setVisible(true);
+		graphWindow.setAlwaysOnTop(true);
+		btnStop.setEnabled(false);
+		buttonStart.setEnabled(true);
 	}
 	// TODO Klient w dobie: 1 ==>biez
 	// TODO kwota wyplacona, pozostala

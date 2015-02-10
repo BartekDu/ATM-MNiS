@@ -67,16 +67,18 @@ public class Simulation extends TimerTask {
 					+ (dayCounter + 1) + " dobê. Iloœæ klientów: "
 					+ dailyClientsLimit + System.lineSeparator());
 			// TODO tutaj obsloga licznika ?
-			presenter.setElapsedDay(dayCounter + 1);
+			presenter.setElapsedDay(dayCounter);
 			dayCounter++;
-			if (dayCounter == timeToStop) {
+			if (dayCounter == timeToStop + 1) {
 				cancel();
+				presenter.getWindow().stopGUI();
 			}
 		}
 		atm.nextClient(client);
 
 		clientCount++;
-		writer.write("Klient w dobie: " + clientCount + System.lineSeparator());
+		writer.write("Klient numer " + clientCount + " w " + dayCounter
+				+ " dobie: " + System.lineSeparator());
 		writer.write("" + atm.getTransactionInformation());
 	}
 

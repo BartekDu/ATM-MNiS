@@ -50,4 +50,8 @@ public class Presenter {
 
 	}
 
+	public AppWindowAdmin getWindow() {
+		return window;
+	}
+
 }
