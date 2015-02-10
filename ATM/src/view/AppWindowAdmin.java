@@ -93,8 +93,9 @@ public class AppWindowAdmin {
 		panelAvNotesSettings.setLayout(null);
 		// TODO tutaj
 		setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
-		panelAvNotesSettings.setBorder(new TitledBorder(null, "Dostêpne nomna³y", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		panelAvNotesSettings.setBorder(new TitledBorder(null,
+				"Dostêpne nomna³y", TitledBorder.LEADING, TitledBorder.TOP,
+				null, null));
 		panelAvNotesSettings.setBounds(21, 11, 149, 231);
 		panelMain.add(panelAvNotesSettings);
 
@@ -199,7 +200,8 @@ public class AppWindowAdmin {
 		lblUzupenijPo.setBounds(7, 178, 59, 14);
 		panelAvNotesSettings.add(lblUzupenijPo);
 
-		spinnerRefillAfterNDays.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinnerRefillAfterNDays.setModel(new SpinnerNumberModel(new Integer(1),
+				new Integer(1), null, new Integer(1)));
 		spinnerRefillAfterNDays.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
@@ -216,8 +218,8 @@ public class AppWindowAdmin {
 		JPanel panelWithdrawalLimits = new JPanel();
 		panelWithdrawalLimits.setBounds(190, 11, 234, 68);
 		panelMain.add(panelWithdrawalLimits);
-		panelWithdrawalLimits.setBorder(new TitledBorder(null, "Limit wyp³aty", TitledBorder.LEADING, TitledBorder.TOP,
-				null, null));
+		panelWithdrawalLimits.setBorder(new TitledBorder(null, "Limit wyp³aty",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelWithdrawalLimits.setLayout(null);
 
 		JLabel lblGrnaGranicaWypaty = new JLabel("G\u00F3rny");
@@ -231,7 +233,8 @@ public class AppWindowAdmin {
 		lowerWithdrawal = new JTextField();
 		lowerWithdrawal.setBounds(142, 16, 86, 20);
 		panelWithdrawalLimits.add(lowerWithdrawal);
-		lowerWithdrawal.setToolTipText("Najni\u017Csza dozwolona kwota wyp\u0142aty");
+		lowerWithdrawal
+				.setToolTipText("Najni\u017Csza dozwolona kwota wyp\u0142aty");
 		lowerWithdrawal.setText("10");
 		lowerWithdrawal.setColumns(10);
 
@@ -244,7 +247,8 @@ public class AppWindowAdmin {
 		JPanel panelClientsPerSecondLimits = new JPanel();
 		panelClientsPerSecondLimits.setBounds(190, 90, 234, 74);
 		panelMain.add(panelClientsPerSecondLimits);
-		panelClientsPerSecondLimits.setBorder(new TitledBorder(null, "Iloœæ klientow na dobê", TitledBorder.LEADING,
+		panelClientsPerSecondLimits.setBorder(new TitledBorder(null,
+				"Iloœæ klientow na dobê", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
 		panelClientsPerSecondLimits.setLayout(null);
 
@@ -271,10 +275,12 @@ public class AppWindowAdmin {
 		JPanel panelOtherConstants = new JPanel();
 		panelOtherConstants.setBounds(190, 168, 234, 74);
 		panelMain.add(panelOtherConstants);
-		panelOtherConstants.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelOtherConstants.setBorder(new TitledBorder(null, "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelOtherConstants.setLayout(null);
 
-		JLabel lblIloKlientowNa = new JLabel("Ilo\u015B\u0107 klientow na sekund\u0119");
+		JLabel lblIloKlientowNa = new JLabel(
+				"Ilo\u015B\u0107 klientow na sekund\u0119");
 		lblIloKlientowNa.setBounds(6, 16, 126, 14);
 		panelOtherConstants.add(lblIloKlientowNa);
 
@@ -284,7 +290,8 @@ public class AppWindowAdmin {
 		clientsPerSecond.setText("100");
 		clientsPerSecond.setColumns(10);
 
-		JLabel labelSimulationDays = new JLabel("D\u0142ugo\u015B\u0107 symulacji");
+		JLabel labelSimulationDays = new JLabel(
+				"D\u0142ugo\u015B\u0107 symulacji");
 		labelSimulationDays.setToolTipText("Dni");
 		labelSimulationDays.setBounds(6, 42, 126, 14);
 		panelOtherConstants.add(labelSimulationDays);
@@ -297,13 +304,17 @@ public class AppWindowAdmin {
 		panelOtherConstants.add(simulationLenght);
 
 		JButton btnStop = new JButton("Stop");
+		btnStop.setEnabled(false);
 		btnStop.setBounds(216, 248, 89, 27);
 		btnStop.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				presenter.stopSimulation();
-
+				btnStop.setEnabled(false);
+				SomeWindow graphWindow = new SomeWindow();
+				graphWindow.getFrame().setVisible(true);
+				graphWindow.setAlwaysOnTop(true);
 			}
 		});
 		panelMain.add(btnStop);
@@ -324,10 +335,12 @@ public class AppWindowAdmin {
 				simPreset.setPLN50((Integer) spinner50.getValue());
 				simPreset.setPLN20((Integer) spinner20.getValue());
 				simPreset.setPLN10((Integer) spinner10.getValue());
-				simPreset.setDaysToRefill((Integer) spinnerRefillAfterNDays.getValue());
+				simPreset.setDaysToRefill((Integer) spinnerRefillAfterNDays
+						.getValue());
 				simPreset.setSimulationLenght(simulationLenght.getText());
 				presenter.setSimulationSettings(simPreset);
 				presenter.startSimulation();
+				btnStop.setEnabled(true);
 
 			}
 		});
@@ -335,7 +348,8 @@ public class AppWindowAdmin {
 		panelMain.add(buttonStart);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Dzieñ symulacji", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null, "Dzieñ symulacji",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(15, 248, 161, 56);
 		panelMain.add(panel);
 		panel.setLayout(null);
@@ -347,10 +361,12 @@ public class AppWindowAdmin {
 
 	}
 
-	public void setDynamicIntervalInNominalSpinnersBorder(JPanel panelAvNotesSettings) {
+	public void setDynamicIntervalInNominalSpinnersBorder(
+			JPanel panelAvNotesSettings) {
 		panelAvNotesSettings
 				.setToolTipText("Uzupe\u0142nij warto\u015Bci danych namina\u0142\u00F3w, kt\u00F3re b\u0119d\u0105 dostaczone w "
-						+ spinnerRefillAfterNDays.getValue() + " dniowym interwale z mennicy");
+						+ spinnerRefillAfterNDays.getValue()
+						+ " dniowym interwale z mennicy");
 	}
 
 	public SimulationPresets getSimulationPreset() {
