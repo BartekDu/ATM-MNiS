@@ -26,10 +26,13 @@ public class ATM implements IATM {
 
     private Writer write;
 
+    private List<Integer> balanceHistory;
+
     private IterarionLog iterationLog;
 
     public ATM() {
 
+        balanceHistory = new ArrayList<Integer>();
         prepareNotesCountMap();
         prepareSortedNotesValueList();
         write = new Writer();
@@ -58,6 +61,7 @@ public class ATM implements IATM {
         iterationLog = new IterarionLog();
         int withdrawAmmount = client.getWithdrawRequest();
         withdrawMoney(withdrawAmmount);
+        balanceHistory.add(calculateATMBalance());
         saveIterationInformation();
     }
 
@@ -163,5 +167,14 @@ public class ATM implements IATM {
     public IterarionLog getTransactionInformation() {
         return iterationLog;
 
+    }
+
+    @Override
+    public List<Integer> getBalanceHistory() {
+        return balanceHistory;
+    }
+
+    public void setBalanceHistory(List<Integer> balanceHistory) {
+        this.balanceHistory = balanceHistory;
     }
 }

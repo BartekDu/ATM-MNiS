@@ -34,10 +34,15 @@ public class AppWindowAdmin {
 	private Presenter presenter;
 
 	private SimulationPresets simPreset;
+
 	private JTextField clientsPerDayMax;
+
 	private JFrame frame_1;
+
 	private JSpinner spinnerRefillAfterNDays = new JSpinner();
+
 	private JLabel labelTimer;
+
 	private JTextField simulationLenght;
 
 	/**
@@ -90,6 +95,15 @@ public class AppWindowAdmin {
 		panelMain.setLayout(null);
 
 		JPanel panelAvNotesSettings = new JPanel();
+		panelAvNotesSettings.setLayout(null);
+		// TODO tutaj
+		setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
+		panelAvNotesSettings.setBorder(new TitledBorder(null,
+				"Dostêpne nomna³y", TitledBorder.LEADING, TitledBorder.TOP,
+				null, null));
+		panelAvNotesSettings.setBounds(21, 11, 149, 231);
+		panelMain.add(panelAvNotesSettings);
+		// JPanel panelAvNotesSettings = new JPanel();
 		panelAvNotesSettings.setLayout(null);
 		// TODO tutaj
 		setDynamicIntervalInNominalSpinnersBorder(panelAvNotesSettings);
@@ -311,6 +325,7 @@ public class AppWindowAdmin {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				presenter.stopSimulation();
+				// TODO tutaj
 				btnStop.setEnabled(false);
 				SomeWindow graphWindow = new SomeWindow();
 				graphWindow.getFrame().setVisible(true);
