@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -15,7 +16,8 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class Chart extends JPanel {
 	private int iterator = 1;
-	private XYSeries graph = new XYSeries("Temperature");
+	private XYSeries graph = new XYSeries("Saldo");
+
 	private XYSeriesCollection dataset = new XYSeriesCollection();
 	private HashMap<String, XYSeries> seriesMap = new HashMap();
 
@@ -39,24 +41,27 @@ public class Chart extends JPanel {
 	private JFreeChart chart;
 	private XYPlot plot;
 
-	public Chart() {
+	public Chart(List<Integer> graphData) {
 		super();
 
 		// create a dataset...
 		// XYSeries temperature = new XYSeries("Temperature");
-
-		graph.add(0.0, 0.0);
+		int i = 1;
+		for (Integer integer : graphData) {
+			graph.add(i, integer);
+			i++;
+		}
 
 		//
-		XYSeries series2 = new XYSeries("Delivered");
-		series2.add(1.0, 5.0);
-		series2.add(2.0, 7.0);
-		series2.add(3.0, 6.0);
-		series2.add(4.0, 8.0);
-		series2.add(5.0, -4.0);
-		series2.add(6.0, 4.0);
-		series2.add(7.0, 2.0);
-		series2.add(8.0, 1.0);
+		// XYSeries series2 = new XYSeries("Delivered");
+		// series2.add(1.0, 5.0);
+		// series2.add(2.0, 7.0);
+		// series2.add(3.0, 6.0);
+		// series2.add(4.0, 8.0);
+		// series2.add(5.0, -4.0);
+		// series2.add(6.0, 4.0);
+		// series2.add(7.0, 2.0);
+		// series2.add(8.0, 1.0);
 		//
 		// XYSeries series3 = new XYSeries("Third");
 		// series3.add(3.0, 4.0);
@@ -70,11 +75,13 @@ public class Chart extends JPanel {
 		//
 
 		dataset.addSeries(graph);
-		dataset.addSeries(series2);
+		// dataset.addSeries(series2);
 		// dataset.addSeries(series3);
 		//
-		chart = ChartFactory.createXYLineChart("Line Chart Demo", "X", "Y",
-				dataset);
+		chart = ChartFactory.createXYLineChart("Historia Salda", "Klienci",
+				"Saldo Bankomatu", dataset);
+		// chart=ChartFactory.createBarChart(title, categoryAxisLabel,
+		// valueAxisLabel, dataset)
 
 		//
 		plot = (XYPlot) chart.getPlot();

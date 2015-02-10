@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -324,12 +325,15 @@ public class AppWindowAdmin {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				List<Integer> withdrawalHistory = presenter.getHistory();
 				presenter.stopSimulation();
 				// TODO tutaj
 				btnStop.setEnabled(false);
-				SomeWindow graphWindow = new SomeWindow();
+
+				SomeWindow graphWindow = new SomeWindow(withdrawalHistory);
 				graphWindow.getFrame().setVisible(true);
 				graphWindow.setAlwaysOnTop(true);
+
 			}
 		});
 		panelMain.add(btnStop);
